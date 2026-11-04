@@ -1,15 +1,18 @@
 # Metabolic Marathon (CHEM 3B metabolism)
 
 Study game for CHEM 3B Chapters 13–15 (carbohydrate metabolism, energy production, lipid and protein metabolism).
-Live at https://itsdrdan.github.io/metabolism/ once this repo is published with GitHub Pages (branch `main`, root).
+Live at https://itsdrdan.github.io/metabolism/
 
-- `index.html` — the whole game (no build step). Loads the brand kit (`games/brand/itsdrdan.css`, `icons.js`, `embed.js`), `games/track.js`
-  for anonymous stats, and the Exam Practice module from the textbook repo (`textbook/js/fbx.js`, `textbook/css/widget-base.css`,
+- `index.html`: the whole game (no build step). Loads the brand kit (`games/brand/itsdrdan.css`, `icons.js`, `embed.js`), `games/track.js`
+  for anonymous stats (with named slips), and the Final Boss module from the textbook repo (`textbook/js/fbx.js`, `textbook/css/widget-base.css`,
   questions from `textbook/bank/metabolism.json`).
-- `meta.json` — study hub card (copy the game into the hub's catalog the usual way). `logo.svg` — badge used in the hero.
-- Modes: Pathway Order, Count the Coenzymes, Name the Reaction, Fuel Fates, Enzymes & Vitamins, Exam Practice.
-  `?mode=count` (or order, rxn, fates, enz, exam) opens a mode directly; `?course=3B` is accepted and ignored (3B-only game).
-- Conventions: 2.5 ATP per NADH, 1.5 per FADH2, 10 ATP per acetyl CoA, 32 ATP per glucose, activation of a fatty acid costs 2 ATP;
-  citrate synthase is classed as a transferase (CHEM 3B convention).
+- Layout matches Sig Fig Sleuth: pick one or more of 4 groups (Pathways, ATP Accounting, Reactions & Coenzymes, Fuel Fates & Health), then
+  turn topic chips on or off. Exam Prep Check = 10 mixed questions and a study plan. Final Boss Questions = the shared exam bank.
+- Art: see `ASSETS.md`. Until the WebP files exist, brand-kit badges and a drawn mitochondrion stand in.
+- Links: `?topic=rxn,coenz` opens topics directly. Old links still work: `?mode=order|count|rxn|fates|enz|exam`. `?course=3B` is ignored (3B only).
+- Conventions (Dr. Dan's Ch 22–24 slides): 2.5 ATP per NADH, 1.5 per FADH2, 10 per acetyl CoA, 32 per glucose, fatty acid activation costs 2 ATP,
+  one less FADH2 per C=C. Students are not expected to memorize every intermediate, so pathway questions focus on start/end, location,
+  reaction types and reading diagrams; full glycolysis and citric acid cycle orders are marked "Challenge".
+- `tools/build_game.py` builds other CHEM 3B games from the **v1** engine (git history before the v2 rebuild); it does not work on this v2 file.
 
 Game design and chemistry by ItsDrDan. Code written with AI assistance (Claude) and checked by the author. CC BY-NC-SA 4.0.
