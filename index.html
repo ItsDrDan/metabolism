@@ -679,6 +679,37 @@ TOPICS.exam = { label: 'Exam-style (A–E)', cat: 'rxn', video: 'redox' };
 CATEGORIES.find(c => c.id === 'rxn').topics.push('table', 'exam');
 const COENZ_OPTS = ['NAD^+', 'NADH', 'FAD', 'NADPH', 'Coenzyme A', 'ATP / ADP', 'PLP (vitamin B6)', 'None'];
 
+/* ===== more exam-style items modeled on the Exam 4 item banks (new wording and examples; none copied) ===== */
+EXAMQ.push(
+  { q: 'In complex I, NADH + H^+ + CoQ → NAD^+ + CoQH2. How many electrons are passed from NADH to coenzyme Q?', a: '2', w: ['0', '1', '4', NOTA], why: 'NADH carries a hydride (H⁻ = 2 electrons); with the extra H+, CoQ picks up 2 H and becomes CoQH2.' },
+  { q: 'In complex IV, one O2 molecule is reduced to two H2O. How many electrons does one O2 accept?', a: '4', w: ['1', '2', '6', NOTA], why: 'O2 + 4 H^+ + 4 e⁻ → 2 H2O. Each O atom needs 2 electrons.' },
+  { q: 'Which equation correctly shows what happens to the iron in cytochrome c when it accepts an electron?', a: 'Fe^3+ + e⁻ → Fe^2+ (iron is reduced)', w: ['Fe^2+ + e⁻ → Fe^3+ (iron is oxidized)', 'Fe^3+ → Fe^2+ + e⁻ (iron is reduced)', 'Fe^2+ → Fe^3+ + 2 e⁻ (iron is reduced)', NOTA], why: 'Gaining an electron lowers the charge from 3+ to 2+: that is reduction (GER).', slip: 'redox-flip' },
+  { q: 'In complex III, CoQH2 → CoQ + 2 H^+ + 2 e⁻, and each cytochrome c takes one electron: cyt c (Fe^3+) + e⁻ → cyt c (Fe^2+). Which statement is TRUE?', a: 'all of the above are TRUE', w: ['CoQH2 is oxidized.', 'The Fe^3+ ions are reduced.', 'One CoQH2 reduces two cytochrome c molecules.'], why: 'CoQH2 loses 2 electrons (oxidized), each Fe3+ gains one (reduced), so one CoQH2 supplies two cytochrome c.' },
+  { q: 'In the electron transport chain, which metal ion in the cytochromes carries the electrons?', a: 'iron', w: ['zinc', 'magnesium', 'sodium', 'calcium'], why: 'Cytochromes contain heme; its iron switches between Fe3+ and Fe2+ as it carries electrons.' },
+  { q: 'Succinyl CoA → succinate + CoA–SH releases energy. That energy is most likely used for which reaction?', a: 'GDP + Pi → GTP', w: ['GTP → GDP + Pi', 'NAD^+ → NADH + H^+', 'FADH2 → FAD', 'ATP → AMP + 2 Pi'], why: 'Breaking the high-energy thioester is coupled to making GTP: the only substrate-level phosphorylation in the citric acid cycle.', slip: 'energy-flip' },
+  { q: 'Glyceraldehyde 3-phosphate + Pi → 1,3-bisphosphoglycerate. The aldehyde becomes a phosphorylated carboxyl group (more bonds to O). Would ATP most likely be used?', a: 'No; NAD^+ → NADH + H^+ is more likely', w: ['Yes, ATP → ADP', 'Yes, ADP → ATP', 'No; NADH + H^+ → NAD^+ is more likely'], why: 'The phosphate comes from Pi, not ATP. Gaining bonds to O is oxidation, so NAD+ is reduced to NADH (glycolysis step 6).' },
+  { q: 'During the first step of β-oxidation, where does the new C=C form? (Carbon 1 is the C=O carbon attached to CoA.)', a: 'between carbons 2 and 3 (the α and β carbons)', w: ['between carbons 1 and 2', 'between carbons 3 and 4', 'at the methyl end of the chain', NOTA], why: 'FAD removes H from the α (C2) and β (C3) carbons, so the trans double bond forms between C2 and C3. The β carbon is then oxidized to a ketone.' },
+  { q: 'Which enzyme most likely catalyzes fructose 6-phosphate + ATP → fructose 1,6-bisphosphate + ADP?', a: 'phosphofructokinase', w: ['aldolase', 'phosphoglucose isomerase', 'fructose 1,6-bisphosphatase', 'pyruvate carboxylase'], why: 'A phosphate moves from ATP onto a sugar: that is a kinase (a transferase).', slip: 'enzyme-class' },
+  { q: 'Which enzyme most likely catalyzes 3-phosphoglycerate → 2-phosphoglycerate?', a: 'phosphoglycerate mutase', w: ['phosphoglycerate kinase', 'enolase', 'glyceraldehyde 3-phosphate dehydrogenase', 'aldolase'], why: 'The phosphate just moves to a new carbon in the same molecule: a mutase (an isomerase).', slip: 'enzyme-class' },
+  { q: 'In fatty acid synthesis, CH3–CO–CH2–CO–ACP + NADPH → CH3–CH(OH)–CH2–CO–ACP. Which enzyme is most likely?', a: '3-ketoacyl ACP reductase', w: ['acetyl CoA carboxylase', '3-hydroxyacyl ACP dehydrase', '3-ketoacyl ACP synthase', 'malonyl CoA transacylase'], why: 'The ketone gains H from NADPH, a reduction, so a reductase is needed.', slip: 'enzyme-class' },
+  { q: 'Which pathway does NOT use NAD^+ as an oxidizing agent?', a: 'lipogenesis', w: ['glycolysis', 'the citric acid cycle', 'β-oxidation', 'oxidative deamination'], why: 'Lipogenesis is a building (reductive) pathway; it uses NADPH as a reducing agent. The other four oxidize substrates with NAD+.' },
+  { q: 'Below are steps for using dietary protein. What is the correct order?<br>I) Amino acids are absorbed into the blood.<br>II) HCl denatures the protein and pepsin cuts it into polypeptides.<br>III) Trypsin and chymotrypsin cut the polypeptides in the small intestine.<br>IV) Excess amino acids are transaminated and the N ends up as urea.', a: 'II, III, I, IV', w: ['I, II, III, IV', 'III, II, I, IV', 'II, I, III, IV', 'IV, II, III, I'], why: 'Stomach (II), small intestine (III), absorption (I), then breakdown of the extras with the N going to urea (IV).' },
+  { q: 'In the ________ stage of metabolism, called ________, starch is hydrolyzed into glucose.', a: 'first; digestion', w: ['second; degradation', 'third; oxidation', 'first; degradation', 'second; digestion'], why: 'Stage 1 is digestion: polymers are hydrolyzed into monomers. Stage 2 is degradation; stage 3 is oxidation.', slip: 'stage' },
+  { q: 'When a muscle cell has plenty of O2, the pyruvate from glycolysis is converted to', a: 'acetyl CoA', w: ['lactate', 'ethanol', 'glucose', 'glycogen'], why: 'Aerobic: pyruvate is oxidized and decarboxylated to acetyl CoA, which enters the citric acid cycle.' },
+  { q: 'Which statement explains why a gram of fat provides more energy than a gram of glucose?', a: 'Its carbons are more reduced, so oxidizing them produces more NADH and FADH2 and therefore more ATP.', w: ['Fat contains more oxygen per carbon than glucose.', 'Fat is oxidized without using the citric acid cycle.', 'Fat is broken down in the stomach.', 'A gram of glucose contains more moles of carbon than a gram of fat, but glucose cannot be oxidized.'], why: 'Fatty acid carbons are mostly CH2 (highly reduced), so each one yields more reduced coenzymes and more ATP (about 9 kcal/g vs 4 kcal/g).' }
+);
+// "two reactions in one step"
+const DOUBLE = [
+  { a: 'Glyceraldehyde 3-phosphate + Pi', b: '1,3-Bisphosphoglycerate', over: 'NAD^+ → NADH', ans: ['Oxidation', 'Phosphorylation'], why: 'The aldehyde is oxidized (NAD+ is reduced) and a phosphate is added from Pi.' },
+  { a: 'Isocitrate', b: 'α-Ketoglutarate', over: 'NAD^+ → NADH, − CO2', ans: ['Oxidation', 'Decarboxylation'], why: 'NAD+ oxidizes the 2° alcohol and a CO2 leaves.' },
+  { a: 'Pyruvate + CoA–SH', b: 'Acetyl CoA', over: 'NAD^+ → NADH, − CO2', ans: ['Oxidation', 'Decarboxylation'], why: 'A CO2 leaves and the 2-carbon piece is oxidized as it attaches to CoA.' },
+  { a: 'Succinyl CoA + GDP + Pi', b: 'Succinate + GTP + CoA–SH', over: '(succinyl CoA synthetase)', ans: ['Hydrolysis', 'Phosphorylation'], why: 'The thioester is broken (hydrolysis) and that energy phosphorylates GDP to GTP.' },
+  { a: 'Glucose 6-phosphate', b: 'Ribulose 5-phosphate', over: 'NADP^+ → NADPH, − CO2', ans: ['Oxidation', 'Decarboxylation'], why: 'The pentose phosphate pathway oxidizes the sugar (NADP+ is reduced) and removes one carbon as CO2.' },
+  { a: 'Glutamate + H2O', b: 'α-Ketoglutarate + NH4^+', over: 'NAD^+ → NADH', ans: ['Oxidation', 'Deamination'], why: 'The carbon is oxidized (NAD+ is reduced) and the amino group leaves as NH4+: oxidative deamination.' }
+];
+const DOUBLE_PAIRS = { Oxidation: 'Reduction', Phosphorylation: 'Phosphate transfer', Decarboxylation: 'Carboxylation', Hydrolysis: 'Condensation', Deamination: 'Transamination' };
+const MATCH_END = [['Glycolysis', 'Pyruvate'], ['Gluconeogenesis', 'Glucose'], ['Glycogenesis', 'Glycogen'], ['Glycogenolysis', 'Glucose 6-phosphate'], ['β-Oxidation', 'Acetyl CoA'], ['Ketogenesis', 'Ketone bodies'], ['Lipogenesis', 'Fatty acids'], ['Urea cycle', 'Urea'], ['Pentose phosphate pathway', 'Ribose 5-phosphate + NADPH'], ['Pyruvate in a muscle without enough O2', 'Lactate'], ['Pyruvate in yeast without O2', 'Ethanol + CO2']];
+
 /* ===================== diagrams ===================== */
 const NAVY = '#2f3d5c';
 const sv = s => String(s).replace(/NAD\^\+/g, 'NAD⁺').replace(/H\^\+/g, 'H⁺').replace(/FADH2/g, 'FADH₂').replace(/CO2/g, 'CO₂').replace(/H2O/g, 'H₂O').replace(/O2/g, 'O₂');
@@ -952,10 +983,33 @@ const examBag = bag(EXAMQ);
 function genExam() {
   const it = examBag.next(), L = 'ABCDE';
   const all = shuffle([{ t: it.a, ok: true }, ...it.w.map(t => ({ t, ok: false }))]);
-  const i = all.findIndex(x => x.t === NOTA); if (i >= 0) all.push(all.splice(i, 1)[0]);
+  const i = all.findIndex(x => x.t === NOTA || /^all of the above/.test(x.t)); if (i >= 0) all.push(all.splice(i, 1)[0]);
   return { topic: 'exam', tag: 'Exam-style', kind: 'choice', one: 1, prompt: f(it.q), choices: all.map((x, k) => ({ html: `<span class="lt">${L[k]}</span>${f(x.t)}`, ok: x.ok, slip: (it.slips && it.slips[x.t]) || it.slip || 'exam-style' })), answer: f(it.a), solution: f(it.why), hint: it.h ? f(it.h) : '' };
 }
 GENERATORS.table = genTable; GENERATORS.exam = genExam;
+
+/* ---------- exam-style additions ---------- */
+function genDouble() {
+  const d = pick(DOUBLE), [x, y] = d.ans, X = DOUBLE_PAIRS[x], Y = DOUBLE_PAIRS[y];
+  const opts = shuffle([[x, y, true], [X, y], [x, Y], [X, Y]]);
+  return { topic: 'rxn', tag: 'Two reactions in one step', kind: 'choice', grid: 1, eq: rxnBox(d, false), prompt: 'This counts as one step, but it is really <b>two</b> reactions. Which two?', choices: opts.map(([a, b, ok]) => ({ html: `${a} and ${b}`, ok: !!ok, slip: (a !== x ? 'redox-flip' : 'double-rxn') })), answer: `${x} and ${y}`, solution: f(d.why), hint: 'Look at each change over the arrow separately: the coenzyme, then any CO₂, phosphate, water or NH₄⁺.' };
+}
+function genMatchEnd() {
+  const rows = shuffle(MATCH_END).slice(0, 4);
+  const prods = [...new Set(MATCH_END.map(m => m[1]))];
+  return { topic: 'big', tag: 'Match the end product', kind: 'multi', prompt: 'Match each pathway or process to its <b>end product</b>.', rows: rows.map(([p, e]) => ({ label: p, slip: 'start-end', choices: shuffle([e, ...shuffle(prods.filter(x => x !== e)).slice(0, 3)]).map(c => ({ html: f(c), ok: c === e })) })), answer: rows.map(([p, e]) => `${p} → ${f(e)}`).join(' · '), solution: 'Know where each pathway starts and ends; you do not need every intermediate.', hint: '-lysis breaks apart, -genesis builds, neo- means new.' };
+}
+function genFattyFormula() {
+  const C = pick([12, 14, 16]), n = C - 2, ac = C / 2, t = ac - 1, ac2 = n / 2;
+  const opts = [[`${ac}, ${t}, ${t}`, 1, ''], [`${ac}, ${ac}, ${ac}`, 0, 'turns-equal-acetyl'], [`${ac}, ${ac + 1}, ${ac + 1}`, 0, 'turns-equal-acetyl'], [`${ac2}, ${ac2 - 1}, ${ac2 - 1}`, 0, 'carbon-count']];
+  return { topic: 'fatty', tag: 'Fatty acid formula', kind: 'choice', grid: 1, flags: { fat: 1 }, eq: `<div class="rxn"><span class="side cf">${f(`CH3(CH2)${n}COOH`)}</span></div>`, prompt: 'During the complete β-oxidation of this fatty acid, how many <b>acetyl CoA</b>, <b>NADH</b> and <b>FADH<sub>2</sub></b> are produced? (in that order)', choices: shuffle(opts).map(([h, ok, s]) => ({ html: h, ok: !!ok, slip: s || 'fatty-count', why: s === 'carbon-count' ? `Count the carbons: CH₃ + ${n} CH₂ + COOH = ${C}, not ${n}.` : '' })), answer: `${ac}, ${t}, ${t}`, solution: `Carbons: 1 (CH₃) + ${n} (CH₂) + 1 (COOH) = <b>${C}</b>. Acetyl CoA = ${C} ÷ 2 = ${ac}. Turns = ${ac} − 1 = ${t}, each making 1 NADH and 1 FADH₂.`, hint: 'First count all the carbons, including the CH₃ and the COOH carbon.' };
+}
+{
+  const g0 = GENERATORS.rxn, g1 = GENERATORS.big, g2 = GENERATORS.fatty;
+  GENERATORS.rxn = () => chance(0.25) ? genDouble() : g0();
+  GENERATORS.big = () => chance(0.2) ? genMatchEnd() : g1();
+  GENERATORS.fatty = () => chance(0.3) ? genFattyFormula() : g2();
+}
 
 /* ===================== Metabolic Marathon: game UI ===================== */
 const BADGE = n => `https://itsdrdan.github.io/games/brand/badges/${n}.webp`;
