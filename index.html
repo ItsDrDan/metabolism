@@ -37,7 +37,7 @@ details.directions ol{margin:0 18px 12px;padding-left:22px}details.directions li
 #practice[data-mode=order]{--md:#d9743f}#practice[data-mode=count]{--md:#2d8a6a}#practice[data-mode=rxn]{--md:#3b7fd1}#practice[data-mode=fates]{--md:#b0533b}#practice[data-mode=enz]{--md:#86509b}#practice[data-mode=exam]{--md:#4b57d1}
 .toprow{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px}
 .mode-title{margin:0;font-family:var(--font-display);font-weight:600;font-size:24px}
-.mode-tag{display:inline-block;font-size:12px;font-weight:900;letter-spacing:.05em;text-transform:uppercase;color:#fff;background:var(--md);padding:3px 10px;border-radius:999px;margin-right:10px;vertical-align:middle}
+.mode-tag{display:inline-block;font-size:12px;font-weight:900;letter-spacing:.05em;text-transform:uppercase;color:#fff;background:color-mix(in srgb,var(--md) 70%,#000);padding:3px 10px;border-radius:999px;margin-right:10px;vertical-align:middle}
 .score{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
 .pill{background:var(--accent-soft);border-radius:999px;padding:6px 12px;font-weight:800;font-size:14px}
 .action{border:0;border-radius:12px;padding:12px 18px;font-weight:800;font-size:16px;cursor:pointer;min-height:48px;background:#eef0fe;color:var(--ink);font-family:var(--font-display)}
@@ -62,7 +62,7 @@ details.directions ol{margin:0 18px 12px;padding-left:22px}details.directions li
 .seq{display:flex;flex-wrap:wrap;align-items:center;gap:6px;min-height:56px;padding:10px;border:2px dashed var(--line2);border-radius:14px;background:var(--paper)}
 .seq .step{background:var(--sky);border-radius:10px;padding:8px 12px;font-weight:700}.seq .arrow{color:var(--faint);font-weight:900}
 .seq .step.ok{background:var(--mint);color:var(--mint-ink)}.seq .step.bad{background:var(--rose);color:var(--rose-ink)}
-.seq .ph{color:var(--faint);font-weight:600}
+.seq .ph{color:#5d6579;font-weight:600}
 .fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-top:10px}
 .field{display:flex;flex-direction:column;gap:4px;font-weight:700}
 .field input{padding:10px 12px;border:2px solid var(--line2);border-radius:12px;font-size:18px;min-height:48px;width:100%}
@@ -96,7 +96,7 @@ table.ref{border-collapse:collapse;width:100%;font-size:15px}table.ref th,table.
 </head>
 <body>
 <div class="celebrate" id="celebrate"></div><div class="toast" id="toast" role="status"></div>
-<div class="app">
+<div class="app" role="main">
 <section class="hero"><div class="hero-logo mascot" id="mascot" data-mood="normal">
 <svg viewBox="0 0 200 200" aria-hidden="true"><defs><radialGradient id="mg" cx=".4" cy=".35" r=".8"><stop offset="0" stop-color="#fff3e4"/><stop offset="1" stop-color="#ffcf9c"/></radialGradient></defs>
 <circle cx="100" cy="100" r="96" fill="#f3effd" stroke="#2e2b38" stroke-width="4"/><circle cx="100" cy="100" r="88" fill="none" stroke="#e1b072" stroke-width="3"/>
