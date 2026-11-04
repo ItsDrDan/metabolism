@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><defs><radialGradient id="mg" cx=".4" cy=".35" r=".8"><stop offset="0" stop-color="#fff3e4"/><stop offset="1" stop-color="#ffcf9c"/></radialGradient></defs>
+<circle cx="100" cy="100" r="96" fill="#f3effd" stroke="#2e2b38" stroke-width="4"/><circle cx="100" cy="100" r="88" fill="none" stroke="#e1b072" stroke-width="3"/>
+<g id="mito"><ellipse cx="100" cy="104" rx="66" ry="42" fill="url(#mg)" stroke="#2e2b38" stroke-width="4"/>
+<path d="M46 104c8-22 18-22 26 0s18 22 26 0 18-22 26 0 18 22 26 0" fill="none" stroke="#e8955a" stroke-width="4" stroke-linecap="round"/>
+<path d="M50 118c8-14 16-14 24 0s16 14 24 0 16-14 24 0 16 14 24 0" fill="none" stroke="#e8955a" stroke-width="3" stroke-linecap="round" opacity=".7"/>
+<g><circle cx="84" cy="96" r="6" fill="#2e2b38"/><circle cx="116" cy="96" r="6" fill="#2e2b38"/><circle cx="86" cy="94" r="2" fill="#fff"/><circle cx="118" cy="94" r="2" fill="#fff"/><path d="M90 112q10 8 20 0" fill="none" stroke="#2e2b38" stroke-width="4" stroke-linecap="round"/></g>
+<path d="M132 138l10 14M68 138l-10 14" stroke="#2e2b38" stroke-width="5" stroke-linecap="round"/><path d="M142 152l10-2M58 152l-10-2" stroke="#2e2b38" stroke-width="5" stroke-linecap="round"/>
+<path d="M156 90l16-8M160 100l18-2" stroke="#ffd36b" stroke-width="4" stroke-linecap="round"/></g>
+<text x="100" y="186" text-anchor="middle" font-family="Fredoka,Nunito,Arial,sans-serif" font-weight="700" font-size="15" fill="#2e2b38">ATP ⚡</text></svg>

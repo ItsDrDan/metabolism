@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Metabolic Marathon • ItsDrDan • CHEM 3B</title>
+<meta name="description" content="CHEM 3B metabolism practice: order the pathways, count NADH, FADH2 and ATP, name the reaction type, follow fuel through fed and fasting states, match enzymes and vitamins, and drill final-exam questions.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cellipse cx='32' cy='32' rx='28' ry='18' fill='%23ffd9b0' stroke='%232e2b38' stroke-width='3'/%3E%3Cpath d='M12 32q6-9 12 0t12 0 12 0 6-9' fill='none' stroke='%23e8955a' stroke-width='3'/%3E%3C/svg%3E">
+<style>
+:root{--bg:#f5f6fb;--surface:#fff;--paper:#fffdf9;--ink:#1f2a44;--muted:#4f5a74;--faint:#6f7890;--line:#e3e6f0;--line2:#d5d9e8;--accent:#4b57d1;--accent-d:#3c47b8;--accent-soft:#eef0fe;--mint:#e8f6ef;--mint-ink:#23704f;--mint-line:#a9d9c2;--amber:#fff6e2;--amber-ink:#80601a;--amber-line:#f0dca6;--rose:#fdedf0;--rose-ink:#9c3346;--rose-line:#eab3bd;--lav:#f3effd;--sky:#eaf4fb;--c3B:#86509b;--c3B-bg:#f2e8f7;--r-lg:20px;--r-md:14px;--r-sm:10px;--shadow:0 1px 2px #1f2a440d,0 6px 20px #1f2a440a;--font:Nunito,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;--font-display:Fredoka,Nunito,system-ui,sans-serif}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}
+body{margin:0;font-family:var(--font);color:var(--ink);background:linear-gradient(120deg,#f1f5fb 0%,#fff8ef 50%,#f6effa 100%);min-height:100vh;line-height:1.45;font-size:17px}
+.app{max-width:1180px;margin:0 auto;padding:14px 14px 40px}
+button,select,input{font:inherit;color:inherit}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);box-shadow:var(--shadow);padding:18px}
+.hero{display:flex;align-items:center;gap:18px;padding:14px 22px;border-radius:24px;background:linear-gradient(120deg,#fff,#f3f0fb);border:1px solid var(--line);box-shadow:var(--shadow)}
+.hero-logo{width:150px;height:150px;flex:none}.hero-logo svg{width:100%;height:100%;display:block;filter:drop-shadow(0 4px 6px #0002)}
+.mascot[data-mood=happy] svg,.mascot[data-mood=wow] svg{animation:pop .55s ease}.mascot[data-mood=hmm] svg{animation:shake .5s ease}
+@keyframes pop{0%{transform:scale(1)}35%{transform:scale(1.08) rotate(-2deg)}70%{transform:scale(.98) rotate(1.5deg)}100%{transform:scale(1)}}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.hero h1{margin:4px 0;font-family:var(--font-display);font-weight:600;font-size:clamp(28px,4vw,42px);line-height:1.05}
+.hero h1 .a{color:#d9743f}.hero h1 .b{color:var(--c3B)}
+.subtitle{margin:0;color:var(--muted);font-size:16px}
+.badge{display:inline-block;background:var(--c3B-bg);color:var(--c3B);border-radius:999px;padding:5px 12px;font-size:13px;font-weight:800}
+details.directions{margin:12px 0;border:2px solid #cfc3e6;border-bottom-width:5px;border-radius:18px;background:linear-gradient(120deg,#f6f2ff,#fff6ec)}
+details.directions>summary{list-style:none;cursor:pointer;padding:12px 18px;font-weight:700;font-family:var(--font-display);font-size:19px;display:flex;justify-content:space-between;align-items:center;min-height:48px}
+details.directions>summary::-webkit-details-marker{display:none}
+.sum-hint{font-family:var(--font);font-size:13px;color:var(--faint);font-weight:700}
+details.directions ol{margin:0 18px 12px;padding-left:22px}details.directions li{margin:4px 0}
+.mode-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin:12px 0}
+.mode-btn{display:flex;flex-direction:column;align-items:flex-start;gap:6px;padding:12px 14px;border-radius:var(--r-md);border:2px solid var(--line2);background:#fff;cursor:pointer;text-align:left;min-height:84px;transition:transform .12s,border-color .12s}
+.mode-btn:hover{transform:translateY(-2px);border-color:var(--accent)}
+.mode-btn.active{border-color:var(--md);background:var(--mb);box-shadow:0 0 0 3px var(--mb)}
+.mode-btn .mode-icon{width:34px;height:34px;color:var(--md)}.mode-btn .mode-icon svg{width:100%;height:100%}
+.mode-name{font-family:var(--font-display);font-weight:600;font-size:17px}.mode-short{font-size:13px;color:var(--muted)}
+.mode-btn[data-mode=order]{--md:#d9743f;--mb:#fdeee8}.mode-btn[data-mode=count]{--md:#2d8a6a;--mb:#e8f6ef}.mode-btn[data-mode=rxn]{--md:#3b7fd1;--mb:#eaf4fb}
+.mode-btn[data-mode=fates]{--md:#b0533b;--mb:#fbebe4}.mode-btn[data-mode=enz]{--md:#86509b;--mb:#f2e8f7}.mode-btn[data-mode=exam]{--md:#4b57d1;--mb:#eef0fe}
+#practice{min-width:0;margin-top:6px;border-top:6px solid var(--md,var(--accent))}
+#practice[data-mode=order]{--md:#d9743f}#practice[data-mode=count]{--md:#2d8a6a}#practice[data-mode=rxn]{--md:#3b7fd1}#practice[data-mode=fates]{--md:#b0533b}#practice[data-mode=enz]{--md:#86509b}#practice[data-mode=exam]{--md:#4b57d1}
+.toprow{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px}
+.mode-title{margin:0;font-family:var(--font-display);font-weight:600;font-size:24px}
+.mode-tag{display:inline-block;font-size:12px;font-weight:900;letter-spacing:.05em;text-transform:uppercase;color:#fff;background:var(--md);padding:3px 10px;border-radius:999px;margin-right:10px;vertical-align:middle}
+.score{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.pill{background:var(--accent-soft);border-radius:999px;padding:6px 12px;font-weight:800;font-size:14px}
+.action{border:0;border-radius:12px;padding:12px 18px;font-weight:800;font-size:16px;cursor:pointer;min-height:48px;background:#eef0fe;color:var(--ink);font-family:var(--font-display)}
+.action.primary{background:var(--accent);color:#fff}.action.primary:hover{background:var(--accent-d)}
+.action.secondary{background:#f1f2f7}.action.next{background:var(--amber);color:var(--amber-ink)}
+.action:disabled{opacity:.5;cursor:not-allowed}
+.btn-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+.prompt{font-size:19px;margin:12px 0 6px}
+.eq{text-align:center;font-size:20px;font-weight:700;padding:12px 14px;background:var(--paper);border:2px solid #e1ebf3;border-radius:14px;line-height:1.6;margin:10px 0;overflow-x:auto;white-space:nowrap}
+.eq .over{display:inline-block;vertical-align:middle;text-align:center;margin:0 10px;font-size:14px;color:var(--muted);line-height:1.1}
+.eq .over b{display:block;font-size:22px;color:var(--ink);line-height:1}
+.options{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin-top:10px}
+.options.cols1{grid-template-columns:1fr}
+.option{display:flex;gap:10px;align-items:flex-start;text-align:left;padding:12px 14px;border-radius:14px;border:2px solid var(--line2);background:#fff;cursor:pointer;min-height:54px;font-size:16px}
+.option:hover{border-color:var(--accent)}.option.sel{border-color:var(--accent);background:var(--accent-soft)}
+.option.right{border-color:var(--mint-ink);background:var(--mint)}.option.wrong{border-color:var(--rose-ink);background:var(--rose)}
+.option:disabled{cursor:default}
+.opt-letter{flex:none;width:28px;height:28px;border-radius:50%;background:var(--accent-soft);color:var(--accent);font-weight:900;display:grid;place-items:center;font-size:14px}
+.tiles{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+.tile{border:2px solid var(--line2);background:#fff;border-radius:12px;padding:10px 14px;font-weight:700;cursor:pointer;min-height:48px;font-size:16px}
+.tile:hover{border-color:var(--accent)}.tile:disabled{opacity:.35;cursor:default}
+.seq{display:flex;flex-wrap:wrap;align-items:center;gap:6px;min-height:56px;padding:10px;border:2px dashed var(--line2);border-radius:14px;background:var(--paper)}
+.seq .step{background:var(--sky);border-radius:10px;padding:8px 12px;font-weight:700}.seq .arrow{color:var(--faint);font-weight:900}
+.seq .step.ok{background:var(--mint);color:var(--mint-ink)}.seq .step.bad{background:var(--rose);color:var(--rose-ink)}
+.seq .ph{color:var(--faint);font-weight:600}
+.fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-top:10px}
+.field{display:flex;flex-direction:column;gap:4px;font-weight:700}
+.field input{padding:10px 12px;border:2px solid var(--line2);border-radius:12px;font-size:18px;min-height:48px;width:100%}
+.field input.ok{border-color:var(--mint-ink);background:var(--mint)}.field input.bad{border-color:var(--rose-ink);background:var(--rose)}
+.hintbox{margin-top:10px;padding:10px 14px;border-radius:12px;background:var(--amber);color:var(--amber-ink);display:none;border:1px solid var(--amber-line)}.hintbox.show{display:block}
+.feedback{margin-top:10px;padding:12px 14px;border-radius:12px;display:none;font-size:16px}.feedback.good{display:block;background:var(--mint);color:var(--mint-ink);border:1px solid var(--mint-line)}.feedback.bad{display:block;background:var(--rose);color:var(--rose-ink);border:1px solid var(--rose-line)}
+#fbxHost{display:none;margin-top:12px}#practice[data-mode=exam] #fbxHost{display:block}
+#practice[data-mode=exam] :is(.score,#questionArea,.btn-row,#hintBox,#feedback){display:none!important}
+.footer-note{font-size:14px;color:var(--faint);margin:8px 0 0}
+details.collapsible{margin-top:12px}details.collapsible>summary{cursor:pointer;font-family:var(--font-display);font-weight:600;font-size:19px;list-style:none;display:flex;justify-content:space-between;align-items:center;min-height:40px}
+details.collapsible>summary::-webkit-details-marker{display:none}
+.journey-chip{font-family:var(--font);font-size:13px;background:var(--accent-soft);color:var(--accent);border-radius:999px;padding:4px 10px;font-weight:800}
+.xp-row{display:flex;align-items:center;gap:10px;margin:10px 0;font-weight:800}.xp-track{flex:1;height:14px;border-radius:999px;background:#eceef7;overflow:hidden}.xp-fill{height:100%;background:linear-gradient(90deg,#8fd8c8,#4b57d1);width:0;transition:width .4s}
+.mode-xp{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin:8px 0}.mode-xp div{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:8px 10px;font-size:14px}.mode-xp b{display:block;font-size:20px}
+.jbadges{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px;margin-top:8px}.jbadge{border:1px solid var(--line);border-radius:12px;padding:10px;font-size:13px;color:var(--faint);background:#fafafd}.jbadge.earned{background:var(--mint);color:var(--mint-ink);border-color:var(--mint-line)}.jbadge .bt{font-weight:900;font-size:15px}
+.journey-reset{margin-top:10px;background:none;border:1px solid var(--line2);border-radius:10px;padding:8px 12px;cursor:pointer;font-size:14px}
+table.ref{border-collapse:collapse;width:100%;font-size:15px}table.ref th,table.ref td{border:1px solid var(--line2);padding:6px 8px;text-align:left}table.ref th{background:var(--lav)}
+.toast{position:fixed;left:50%;bottom:20px;transform:translate(-50%,20px);background:var(--ink);color:#fff;padding:10px 16px;border-radius:999px;opacity:0;transition:.3s;pointer-events:none;z-index:9;font-weight:700}.toast.show{opacity:1;transform:translate(-50%,0)}
+.celebrate{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:8}.confetti{position:absolute;width:10px;height:14px;border-radius:3px;animation:fall 3.2s linear forwards}@keyframes fall{to{transform:translateY(105vh) rotate(720deg);opacity:0}}
+.vidlist{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px}.vidlist a{background:var(--sky);border-radius:999px;padding:6px 12px;text-decoration:none;color:var(--ink);font-weight:700;font-size:14px}
+.dd-credit{display:inline-block;margin-top:6px}
+@media(max-width:700px){.hero{flex-direction:column;text-align:center}.hero-logo{width:120px;height:120px}.mode-title{font-size:20px}.eq{font-size:17px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+<link rel="stylesheet" href="https://itsdrdan.github.io/games/brand/itsdrdan.css">
+<link rel="stylesheet" href="https://itsdrdan.github.io/textbook/css/widget-base.css">
+<script src="https://itsdrdan.github.io/games/brand/icons.js"></script>
+<script src="https://itsdrdan.github.io/games/brand/embed.js" defer></script>
+<script src="https://itsdrdan.github.io/games/track.js" defer></script>
+<script src="https://itsdrdan.github.io/textbook/js/fbx.js"></script>
+</head>
+<body>
+<div class="celebrate" id="celebrate"></div><div class="toast" id="toast" role="status"></div>
+<div class="app">
+<section class="hero"><div class="hero-logo mascot" id="mascot" data-mood="normal">
+<svg viewBox="0 0 200 200" aria-hidden="true"><defs><radialGradient id="mg" cx=".4" cy=".35" r=".8"><stop offset="0" stop-color="#fff3e4"/><stop offset="1" stop-color="#ffcf9c"/></radialGradient></defs>
+<circle cx="100" cy="100" r="96" fill="#f3effd" stroke="#2e2b38" stroke-width="4"/><circle cx="100" cy="100" r="88" fill="none" stroke="#e1b072" stroke-width="3"/>
+<g id="mito"><ellipse cx="100" cy="104" rx="66" ry="42" fill="url(#mg)" stroke="#2e2b38" stroke-width="4"/>
+<path d="M46 104c8-22 18-22 26 0s18 22 26 0 18-22 26 0 18 22 26 0" fill="none" stroke="#e8955a" stroke-width="4" stroke-linecap="round"/>
+<path d="M50 118c8-14 16-14 24 0s16 14 24 0 16-14 24 0 16 14 24 0" fill="none" stroke="#e8955a" stroke-width="3" stroke-linecap="round" opacity=".7"/>
+<g id="lgFace"></g>
+<path d="M132 138l10 14M68 138l-10 14" stroke="#2e2b38" stroke-width="5" stroke-linecap="round"/><path d="M142 152l10-2M58 152l-10-2" stroke="#2e2b38" stroke-width="5" stroke-linecap="round"/>
+<path d="M156 90l16-8M160 100l18-2" stroke="#ffd36b" stroke-width="4" stroke-linecap="round"/></g>
+<text x="100" y="186" text-anchor="middle" font-family="Fredoka,Nunito,Arial,sans-serif" font-weight="700" font-size="15" fill="#2e2b38">ATP ⚡</text></svg></div>
+<div class="hero-text"><span class="badge">⚡ Metabolic Marathon • ItsDrDan • CHEM 3B</span>
+<h1><span class="a">Metabolic</span> <span class="b">Marathon</span></h1>
+<p class="subtitle">Glycolysis to the urea cycle: order the pathways, count the ATP, name the reactions, and follow the fuel.</p></div></section>
+
+<details class="directions" id="howTo"><summary>📘 How to play <span class="sum-hint">Tap to open</span></summary>
+<ol><li><strong>Pick a mode</strong> below.</li><li><strong>Answer</strong>, then press <strong>Check Answer</strong>. Wrong? Try again.</li><li><strong>Stuck?</strong> Hint gives a clue. Show Answer gives no point.</li></ol>
+<p style="margin:0 18px 12px"><strong>Tip:</strong> ATP bookkeeping uses 2.5 ATP per NADH and 1.5 ATP per FADH<sub>2</sub>, the values in your textbook.</p></details>
+<nav class="mode-grid" id="modeGrid" aria-label="Choose a study mode"></nav>
+
+<section class="card" id="practice">
+<div class="toprow"><h2 class="mode-title" id="modeTitle">Pathway Order</h2><div class="score"><span class="pill">Correct: <span id="correct">0</span></span><span class="pill">Streak: <span id="streak">0</span> 🔥</span><span class="pill">Assisted: <span id="assisted">0</span></span><button class="action next" id="nextBtn">New Question ↻</button></div></div>
+<div id="questionArea"></div>
+<div class="btn-row"><button class="action primary" id="checkBtn">Check Answer</button><button class="action secondary" id="hintBtn">Hint</button><button class="action secondary" id="showBtn">Show Answer</button></div>
+<div class="hintbox" id="hintBox"></div><div class="feedback" id="feedback" role="status" aria-live="polite"></div>
+<div id="fbxHost"></div>
+</section>
+
+<details class="card collapsible" id="journey"><summary>🧭 Chemistry Journey <span class="journey-chip" id="jChip">Level 1 • 0 XP</span></summary>
+<div class="xp-row"><span id="xpLevel">Level 1</span><div class="xp-track"><div class="xp-fill" id="xpFill"></div></div><span id="xpText">0 / 100 XP</span></div>
+<p class="footer-note">Earn 10 XP for each independent answer (+2 per streak step, up to +10) and 2 XP for a reveal. Saved in this browser only.</p>
+<div class="mode-xp" id="modeXp"></div><div class="jbadges" id="jbadges"></div><button class="journey-reset" id="journeyReset" type="button">Reset progress</button></details>
+
+<details class="card collapsible"><summary>🧠 Reference: pathway scorecard</summary>
+<table class="ref"><thead><tr><th>Stage (per glucose unless noted)</th><th>Where</th><th>NADH</th><th>FADH<sub>2</sub></th><th>ATP / GTP made directly</th><th>CO<sub>2</sub></th></tr></thead><tbody>
+<tr><td>Glycolysis: glucose → 2 pyruvate</td><td>cytosol</td><td>2</td><td>0</td><td>2 net (4 made − 2 spent)</td><td>0</td></tr>
+<tr><td>Pyruvate → acetyl CoA (×2)</td><td>mitochondrion</td><td>2</td><td>0</td><td>0</td><td>2</td></tr>
+<tr><td>Citric acid cycle (×2 turns)</td><td>mitochondrial matrix</td><td>6</td><td>2</td><td>2 GTP</td><td>4</td></tr>
+<tr><td><b>Total per glucose</b> (2.5 ATP/NADH, 1.5 ATP/FADH<sub>2</sub>)</td><td></td><td>10</td><td>2</td><td><b>≈ 32 ATP</b> (30 with the glycerol-phosphate shuttle)</td><td>6</td></tr>
+<tr><td>Fermentation (no O<sub>2</sub>): glucose → 2 lactate (or 2 ethanol + 2 CO<sub>2</sub>)</td><td>cytosol</td><td>0 net</td><td>0</td><td>2</td><td>0 (2 in yeast)</td></tr>
+<tr><td>One turn of β-oxidation (removes 2 C as acetyl CoA)</td><td>mitochondrial matrix</td><td>1</td><td>1</td><td>0 (activation costs 2 ATP once per fatty acid)</td><td>0</td></tr>
+<tr><td>Palmitic acid (16 C): 7 turns, 8 acetyl CoA</td><td></td><td>7 + 24</td><td>7 + 8</td><td>8 GTP</td><td>16</td></tr>
+<tr><td><b>Total per palmitic acid</b></td><td></td><td></td><td></td><td><b>≈ 106 ATP</b> (108 − 2 for activation)</td><td></td></tr>
+</tbody></table>
+<p class="footer-note">Electron transport chain: NADH → complex I; FADH<sub>2</sub> → complex II; both → coenzyme Q → complex III → cytochrome c → complex IV → O<sub>2</sub> (final acceptor, makes H<sub>2</sub>O). H<sup>+</sup> pumped out drives ATP synthase.</p></details>
+
+<details class="card collapsible"><summary>🎥 Learn with Dr. Dan</summary>
+<div class="vidlist"><a href="https://youtu.be/IsypcIC7XqA" target="_blank" rel="noopener">LEO goes GER: oxidation &amp; reduction ↗</a><a href="https://youtu.be/pwyW-X99GI8" target="_blank" rel="noopener">Oxidation &amp; reduction of carbohydrates ↗</a><a href="https://youtu.be/Heg74N-mZms" target="_blank" rel="noopener">Hydrolysis of triacylglycerides ↗</a><a href="https://www.youtube.com/playlist?list=PLEaxsqCAZKoCKsxdsJLMbZTqSuBQF2z2f" target="_blank" rel="noopener">CHEM 3B playlist ↗</a></div>
+<p class="footer-note">Textbook: <a href="https://chem.libretexts.org/Workbench/CHEM_3B%3A_Introductory_Organic_and_Biochemistry" target="_blank" rel="noopener">Introductory Organic and Biological Chemistry for FCC</a>, Chapters 13–15.</p></details>
+
+<p class="footer-note">Practice topics follow CHEM 3B Chapters 13 (carbohydrate metabolism), 14 (energy production) and 15 (lipid and protein metabolism). Practice questions are generated for this game; Exam Practice questions come from Final Boss.</p>
+<p class="footer-note">This game collects anonymous practice stats (no names or student IDs) to help plan new lessons.<br><span class="dd-credit"><strong>Game design and chemistry by ItsDrDan.</strong><br>I used AI (Claude by Anthropic) to help write the code, the way I hope you'll use it: as a tool, while checking every answer and understanding the chemistry and math behind it.</span></p>
+</div>
+<script>
+/* ===== helpers ===== */
+const $=id=>document.getElementById(id),esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const rnd=n=>Math.floor(Math.random()*n),pickOne=a=>a[rnd(a.length)],shuf=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=rnd(i+1);[a[i],a[j]]=[a[j],a[i]]}return a};
+const sub=s=>s.replace(/(?<=[A-Za-z\)\]])(\d+)/g,'<sub>$1</sub>').replace(/\^(\S+)/g,'<sup>$1</sup>');
+function bag(arr){const b={items:arr,left:[]};b.next=()=>{if(!b.left.length)b.left=shuf(b.items);return b.left.pop()};return b}
+function others(all,correct,n){return shuf(all.filter(x=>x!==correct)).slice(0,n)}
+function mc(html,correct,wrongs,why,hint,extra){const opts=shuf([correct,...wrongs]).map(o=>({key:o,html:sub(o)}));return Object.assign({kind:'mc',html,options:opts,answer:correct,why,hint},extra||{})}
+const CO={nadh:'NAD^+ → NADH',fadh:'FAD → FADH2',nadhr:'NADH → NAD^+',nadphr:'NADPH → NADP^+',atp:'ATP → ADP',h2o:'+ H2O',co2:'− CO2',h2oL:'− H2O'};
+
+/* ===== 1. Pathway Order ===== */
+const PATHS=[
+ {name:'Glycolysis (the main stops)',steps:['Glucose','Glucose 6-phosphate','Fructose 6-phosphate','Fructose 1,6-bisphosphate','Glyceraldehyde 3-phosphate','1,3-Bisphosphoglycerate','3-Phosphoglycerate','Phosphoenolpyruvate','Pyruvate'],why:'Glycolysis phosphorylates glucose twice (spending 2 ATP), splits the six-carbon sugar into two three-carbon pieces, oxidizes them (2 NADH), and harvests 4 ATP, ending at pyruvate.'},
+ {name:'Citric acid cycle',steps:['Acetyl CoA + Oxaloacetate','Citrate','Isocitrate','α-Ketoglutarate','Succinyl CoA','Succinate','Fumarate','Malate','Oxaloacetate'],why:'Acetyl CoA joins oxaloacetate to make citrate; two decarboxylations (to α-ketoglutarate, then succinyl CoA) release the two carbons as CO2; succinate → fumarate → malate → oxaloacetate regenerates the starter.'},
+ {name:'One turn of β-oxidation',steps:['Fatty acyl CoA','trans-Enoyl CoA (C=C)','L-Hydroxyacyl CoA (C–OH)','Ketoacyl CoA (C=O)','Acyl CoA (2 carbons shorter) + Acetyl CoA'],why:'Oxidize (FAD) to a trans double bond, hydrate it to a 2° alcohol, oxidize (NAD+) to a ketone, then split off acetyl CoA. Same oxidize–hydrate–oxidize pattern as succinate → oxaloacetate.'},
+ {name:'From glucose to ATP (the big picture)',steps:['Glucose','Pyruvate','Acetyl CoA','Citric acid cycle (NADH, FADH2)','Electron transport chain (H^+ pumped)','ATP synthase makes ATP'],why:'Glycolysis makes pyruvate, pyruvate dehydrogenase makes acetyl CoA, the citric acid cycle loads NADH and FADH2, the electron transport chain pumps H+, and ATP synthase turns that gradient into ATP.'},
+ {name:'Ketone body formation (ketogenesis)',steps:['2 Acetyl CoA','Acetoacetyl CoA','HMG-CoA','Acetoacetate','β-Hydroxybutyrate (or acetone)'],why:'When acetyl CoA piles up faster than oxaloacetate can take it, the liver condenses it to acetoacetyl CoA, then HMG-CoA, which releases acetoacetate; reduction gives β-hydroxybutyrate and decarboxylation gives acetone.'},
+ {name:'Fate of an amino group (nitrogen)',steps:['Amino acid','Transamination → Glutamate','Oxidative deamination → NH4^+','Carbamoyl phosphate','Urea cycle (liver)','Urea → kidneys → urine'],why:'Transaminases move the amino group onto α-ketoglutarate to make glutamate; glutamate dehydrogenase releases it as ammonium; the liver packs ammonium into carbamoyl phosphate and the urea cycle turns it into urea for the kidneys.'},
+ {name:'Stages of catabolism',steps:['Food (proteins, carbohydrates, fats)','Digestion → amino acids, monosaccharides, fatty acids + glycerol','Acetyl CoA (via pyruvate or β-oxidation)','Citric acid cycle','Electron transport and oxidative phosphorylation → ATP'],why:'Stage 1 digests polymers to monomers, stage 2 converts the monomers to acetyl CoA (making a little ATP), and stage 3 (citric acid cycle + electron transport) makes most of the ATP.'},
+ {name:'Electron transport chain',steps:['NADH','Complex I','Coenzyme Q','Complex III','Cytochrome c','Complex IV','O2 → H2O'],why:'Electrons from NADH enter at complex I (FADH2 enters at complex II), ride coenzyme Q to complex III, cytochrome c to complex IV, and finally reduce O2 to water. Complexes I, III and IV pump H+.'},
+ {name:'Cori cycle',steps:['Glucose in working muscle','Pyruvate','Lactate (muscle, low O2)','Lactate carried in blood to liver','Pyruvate (liver)','Glucose (gluconeogenesis) → back to blood'],why:'Muscle dumps lactate into the blood; the liver oxidizes it back to pyruvate and spends 6 ATP to rebuild glucose, which returns to the muscle.'},
+];
+const orderBag=bag(PATHS);
+function genOrder(){const p=orderBag.next();let steps=p.steps;let start=0;
+ if(steps.length>6){start=rnd(steps.length-5);steps=steps.slice(start,start+6)}
+ const q={kind:'order',path:p,steps,picked:[],html:`<p class="prompt"><b>${esc(p.name)}.</b> Tap the stops in order${start?' (this is a stretch of the pathway starting at <b>'+esc(steps[0])+'</b>)':''}, from first to last.</p><div class="seq" id="seq"><span class="ph">Your order appears here…</span></div><div class="tiles" id="tiles"></div><button type="button" class="action secondary" id="undoBtn">Undo last</button>`,
+  hint:'First stop: <b>'+esc(steps[0])+'</b>. Next comes <b>'+esc(steps[1])+'</b>. '+(steps.length>2?'Work out the rest from what each step does to the molecule.':''),
+  why:p.why,answerText:steps.join(' → ')};
+ q.mount=()=>{const T=$('tiles');T.innerHTML=shuf(steps).map(s=>`<button type="button" class="tile" data-s="${esc(s)}">${sub(esc(s))}</button>`).join('');
+  T.querySelectorAll('.tile').forEach(b=>b.onclick=()=>{if(state.done)return;q.picked.push(b.dataset.s);b.disabled=true;q.render()});
+  $('undoBtn').onclick=()=>{if(state.done||!q.picked.length)return;const s=q.picked.pop();[...T.querySelectorAll('.tile')].find(b=>b.dataset.s===s).disabled=false;q.render()}};
+ q.render=mark=>{const S=$('seq');if(!q.picked.length){S.innerHTML='<span class="ph">Your order appears here…</span>';return}
+  S.innerHTML=q.picked.map((s,i)=>`<span class="step ${mark?(s===steps[i]?'ok':'bad'):''}">${sub(esc(s))}</span>`).join('<span class="arrow">→</span>')};
+ q.check=()=>{if(q.picked.length<steps.length)return {msg:'Place all '+steps.length+' stops first ('+(steps.length-q.picked.length)+' to go).',ok:null};const ok=q.picked.every((s,i)=>s===steps[i]);q.render(true);if(!ok){const k=q.picked.findIndex((s,i)=>s!==steps[i]);return {ok:false,msg:'Stop '+(k+1)+' is out of place. Undo back to it and try again.'}}return {ok:true}};
+ q.revealI=()=>{q.picked=steps.slice();q.render(true);$('tiles').querySelectorAll('.tile').forEach(b=>b.disabled=true)};
+ q.lock=()=>{$('tiles').querySelectorAll('.tile').forEach(b=>b.disabled=true);$('undoBtn').disabled=true};
+ return q}
+
+/* ===== 2. Count the Coenzymes ===== */
+const FA={'lauric acid (12 carbons)':12,'myristic acid (14 carbons)':14,'palmitic acid (16 carbons)':16,'stearic acid (18 carbons)':18,'arachidic acid (20 carbons)':20};
+const COUNT_Q=[
+ ()=>({html:'<p class="prompt">One <b>turn</b> of the citric acid cycle (one acetyl CoA in). Fill in what it produces.</p>',fields:[['NADH',3],['FADH2',1],['GTP (ATP)',1],['CO2',2]],hint:'Three oxidations use NAD+ (isocitrate, α-ketoglutarate, malate), one uses FAD (succinate), one substrate-level phosphorylation makes GTP, and both acetyl carbons leave as CO2.',why:'Per turn: 3 NADH, 1 FADH2, 1 GTP and 2 CO2. That is about 10 ATP once the NADH and FADH2 go through electron transport.'}),
+ ()=>({html:'<p class="prompt"><b>Glycolysis</b>, one glucose → 2 pyruvate. Fill in the totals.</p>',fields:[['ATP spent',2],['ATP made',4],['Net ATP',2],['NADH',2]],hint:'Two phosphorylations cost ATP early; each of the two three-carbon halves then makes 2 ATP and 1 NADH.',why:'2 ATP in, 4 ATP out, net 2 ATP, plus 2 NADH from the oxidation of glyceraldehyde 3-phosphate.'}),
+ ()=>({html:'<p class="prompt">Converting <b>2 pyruvate → 2 acetyl CoA</b> (pyruvate dehydrogenase). Fill in the products.</p>',fields:[['NADH',2],['CO2',2],['ATP made directly',0]],hint:'Each pyruvate loses one carbon as CO2 and is oxidized once.',why:'One NADH and one CO2 per pyruvate, so 2 and 2 per glucose; no ATP is made in this step.'}),
+ ()=>({html:'<p class="prompt">Complete oxidation of <b>one glucose</b> (glycolysis + pyruvate oxidation + 2 turns of the cycle). Fill in the totals <em>before</em> electron transport.</p>',fields:[['NADH',10],['FADH2',2],['ATP/GTP made directly',4],['CO2',6]],hint:'Add glycolysis (2 NADH, 2 ATP), pyruvate oxidation (2 NADH, 2 CO2) and two cycle turns (6 NADH, 2 FADH2, 2 GTP, 4 CO2).',why:'10 NADH, 2 FADH2, 4 ATP/GTP and 6 CO2: all six glucose carbons leave as CO2. With 2.5 ATP per NADH and 1.5 per FADH2 that is 25 + 3 + 4 = 32 ATP.'}),
+ ()=>({html:'<p class="prompt">Using <b>2.5 ATP per NADH</b> and <b>1.5 ATP per FADH<sub>2</sub></b>, how many ATP does one <b>turn of the citric acid cycle</b> yield in total?</p>',fields:[['ATP',10]],hint:'3 NADH × 2.5 + 1 FADH2 × 1.5 + 1 GTP.',why:'7.5 + 1.5 + 1 = 10 ATP per acetyl CoA.'}),
+ ()=>{const [name,n]=pickOne(Object.entries(FA));const ac=n/2,turns=ac-1;return {html:`<p class="prompt"><b>β-Oxidation of ${name}.</b> Fill in the counts for the complete breakdown to acetyl CoA.</p>`,fields:[['Acetyl CoA',ac],['Turns (cycles) of β-oxidation',turns],['NADH',turns],['FADH2',turns]],hint:`Each turn clips off 2 carbons as acetyl CoA; the last turn makes two acetyl CoA at once, so turns = acetyl CoA − 1. Every turn makes 1 NADH and 1 FADH2.`,why:`${n} carbons ÷ 2 = ${ac} acetyl CoA in ${turns} turns, each giving 1 NADH and 1 FADH2.`}},
+ ()=>{const [name,n]=pickOne(Object.entries(FA));const ac=n/2,turns=ac-1,atp=ac*10+turns*4-2;return {html:`<p class="prompt">Total ATP from <b>${name}</b>, counting 10 ATP per acetyl CoA through the cycle, 2.5 per NADH and 1.5 per FADH<sub>2</sub> from β-oxidation, and the 2 ATP spent on activation.</p>`,fields:[['ATP (net)',atp]],hint:`${ac} acetyl CoA × 10 + ${turns} NADH × 2.5 + ${turns} FADH2 × 1.5 − 2.`,why:`${ac*10} + ${turns*2.5} + ${turns*1.5} − 2 = ${atp} ATP. Compare 32 ATP from one glucose: gram for gram, fat stores more than twice the energy.`}},
+ ()=>({html:'<p class="prompt"><b>Lactic acid fermentation</b>, one glucose → 2 lactate (muscle without enough O<sub>2</sub>). Fill in the net totals.</p>',fields:[['Net ATP',2],['Net NADH',0],['CO2',0]],hint:'Glycolysis makes 2 NADH, but reducing 2 pyruvate to lactate uses them both back up.',why:'Net 2 ATP, no net NADH (it is recycled to NAD+ so glycolysis can continue) and no CO2. Only 2 ATP per glucose, which is why sprinting cannot last.'}),
+ ()=>({html:'<p class="prompt"><b>Alcoholic fermentation</b> in yeast, one glucose → ethanol. Fill in the totals.</p>',fields:[['Ethanol',2],['CO2',2],['Net ATP',2]],hint:'Each pyruvate loses one CO2 to give acetaldehyde, which NADH reduces to ethanol.',why:'2 ethanol, 2 CO2 and 2 ATP per glucose. The CO2 leavens bread; the ethanol ends up in beer and wine.'}),
+ ()=>({html:'<p class="prompt">In the <b>electron transport chain</b>, how many H<sup>+</sup>-pumping complexes does an electron pair from <b>NADH</b> pass through, and how many from <b>FADH<sub>2</sub></b>?</p>',fields:[['Complexes pumped by NADH electrons',3],['Complexes pumped by FADH2 electrons',2]],hint:'NADH enters at complex I; FADH2 enters at complex II, which does not pump. Complexes I, III and IV pump H+.',why:'NADH: complexes I, III and IV (3 pumps, about 2.5 ATP). FADH2: skips complex I, so only III and IV (2 pumps, about 1.5 ATP).'}),
+ ()=>({html:'<p class="prompt"><b>Gluconeogenesis</b>: making one glucose from 2 pyruvate (or 2 lactate). How many ATP-equivalents (ATP + GTP) does it cost, and how many did glycolysis of that glucose earn?</p>',fields:[['ATP + GTP spent to make glucose',6],['Net ATP glycolysis earned',2]],hint:'Reversing glycolysis is uphill: three steps need extra energy (4 ATP + 2 GTP).',why:'6 ATP-equivalents to rebuild glucose versus 2 earned by breaking it down; the Cori cycle therefore costs the liver 4 ATP per glucose, paid for by oxidizing fat.'}),
+ ()=>({html:'<p class="prompt">How many carbons enter the citric acid cycle in <b>one acetyl group</b>, and how many carbon atoms does <b>oxaloacetate</b> have?</p>',fields:[['Carbons in an acetyl group',2],['Carbons in oxaloacetate',4],['Carbons in citrate',6]],hint:'Acetyl is CH3CO–; citrate is the first six-carbon intermediate.',why:'2 + 4 = 6: citrate. The two carbons that leave as CO2 in the same turn come, formally, from the oxaloacetate end; the acetyl carbons leave in later turns.'}),
+];
+const countBag=bag(COUNT_Q);
+function genCount(){const spec=countBag.next()();const q={kind:'fields',html:spec.html,fields:spec.fields,hint:spec.hint,why:spec.why,answerText:spec.fields.map(f=>f[0]+' = '+f[1]).join('; ')};
+ q.html+=`<div class="fields">${spec.fields.map((f,i)=>`<label class="field"><span>${sub(esc(f[0]))}</span><input type="number" step="any" inputmode="decimal" id="f${i}" aria-label="${esc(f[0])}"></label>`).join('')}</div>`;
+ q.mount=()=>{};q.check=()=>{let empty=0,ok=true;spec.fields.forEach((f,i)=>{const el=$('f'+i),v=el.value.trim();if(v==='')empty++;const good=v!==''&&Math.abs(parseFloat(v)-f[1])<0.01;el.className=good?'ok':'bad';if(!good)ok=false});if(empty===spec.fields.length)return {ok:null,msg:'Type your numbers first.'};return ok?{ok:true}:{ok:false,msg:'The red boxes are not right yet. Fix them and check again.'}};
+ q.revealI=()=>spec.fields.forEach((f,i)=>{$('f'+i).value=f[1];$('f'+i).className='ok'});q.lock=()=>spec.fields.forEach((f,i)=>$('f'+i).disabled=true);return q}
+
+/* ===== 3. Name the Reaction ===== */
+const RT=['Oxidation (dehydrogenation)','Reduction','Hydration (add H2O)','Dehydration (lose H2O)','Decarboxylation (lose CO2)','Oxidative decarboxylation','Phosphorylation (phosphate transfer)','Isomerization','Transamination','Oxidative deamination','Hydrolysis','Condensation (join, lose a small molecule)'];
+const RXNS=[
+ {a:'Succinate',b:'Fumarate',over:CO.fadh,t:RT[0],why:'Two H atoms leave adjacent carbons and a trans C=C forms; FAD takes the hydrogens. Losing H is oxidation (LEO).',ex:['⁻OOC–CH2–CH2–COO⁻','⁻OOC–CH=CH–COO⁻']},
+ {a:'Fumarate',b:'Malate',over:CO.h2o,t:RT[2],why:'Water adds across the double bond to make a 2° alcohol: hydration, the Chapter 3 addition reaction.',ex:['⁻OOC–CH=CH–COO⁻','⁻OOC–CH(OH)–CH2–COO⁻']},
+ {a:'Malate',b:'Oxaloacetate',over:CO.nadh,t:RT[0],why:'The 2° alcohol becomes a ketone; NAD+ accepts the hydride. Oxidation of a 2° alcohol gives a ketone (Chapter 4).',ex:['⁻OOC–CH(OH)–CH2–COO⁻','⁻OOC–C(=O)–CH2–COO⁻']},
+ {a:'Pyruvate',b:'Lactate',over:CO.nadhr,t:RT[1],why:'The ketone gains two hydrogens from NADH and becomes a 2° alcohol: a reduction (GER), and the way muscle regenerates NAD+ without oxygen.',ex:['CH3–C(=O)–COO⁻','CH3–CH(OH)–COO⁻']},
+ {a:'Pyruvate',b:'Acetyl CoA',over:CO.nadh+' , '+CO.co2+' , + CoA–SH',t:RT[5],why:'A carbon leaves as CO2 and the remaining two-carbon unit is oxidized (NADH made) as it is attached to CoA: oxidative decarboxylation.',ex:['CH3–C(=O)–COO⁻','CH3–C(=O)–S–CoA']},
+ {a:'Isocitrate',b:'α-Ketoglutarate',over:CO.nadh+' , '+CO.co2,t:RT[5],why:'The 2° alcohol is oxidized (NADH) and a carboxyl leaves as CO2: oxidative decarboxylation, the first CO2 of the cycle.',ex:['C6 (three COO⁻, one OH)','C5 (two COO⁻, one C=O)']},
+ {a:'α-Ketoglutarate',b:'Succinyl CoA',over:CO.nadh+' , '+CO.co2+' , + CoA–SH',t:RT[5],why:'Second CO2 of the cycle, another NADH, and the product is a thioester with CoA, just like pyruvate → acetyl CoA.',ex:['⁻OOC–CH2–CH2–C(=O)–COO⁻','⁻OOC–CH2–CH2–C(=O)–S–CoA']},
+ {a:'Glucose',b:'Glucose 6-phosphate',over:CO.atp,t:RT[6],why:'Hexokinase transfers a phosphate from ATP to the C6 –OH, making a phosphate ester that traps glucose in the cell.',ex:['C6H12O6','C6H11O6–OPO3^2−']},
+ {a:'Glucose 6-phosphate',b:'Fructose 6-phosphate',over:'',t:RT[7],why:'Same atoms, rearranged: the aldose becomes a ketose. No oxidation, no water, no phosphate change.',ex:['aldose–6-P','ketose–6-P']},
+ {a:'Citrate',b:'Isocitrate',over:'(aconitase)',t:RT[7],why:'The –OH moves to the neighboring carbon (through a dehydration then rehydration), so overall it is an isomerization: same formula, different arrangement.',ex:['3° alcohol','2° alcohol']},
+ {a:'Alanine + α-Ketoglutarate',b:'Pyruvate + Glutamate',over:'(PLP, vitamin B6)',t:RT[8],why:'The amino group swaps places with a keto oxygen: transamination. Alanine becomes the keto acid pyruvate; α-ketoglutarate becomes the amino acid glutamate.',ex:['CH3–CH(NH3^+)–COO⁻ + ⁻OOC–C(=O)–CH2CH2–COO⁻','CH3–C(=O)–COO⁻ + ⁻OOC–CH(NH3^+)–CH2CH2–COO⁻']},
+ {a:'Glutamate',b:'α-Ketoglutarate + NH4^+',over:CO.nadh+' , '+CO.h2o,t:RT[9],why:'Glutamate dehydrogenase removes the amino group as free ammonium while oxidizing the carbon to a ketone: oxidative deamination, the step that frees nitrogen for the urea cycle.',ex:['⁻OOC–CH(NH3^+)–CH2CH2–COO⁻','⁻OOC–C(=O)–CH2CH2–COO⁻ + NH4^+']},
+ {a:'Acetoacetate',b:'Acetone',over:CO.co2,t:RT[4],why:'The β-keto acid loses CO2 without any oxidation state change: a simple decarboxylation that happens spontaneously in blood.',ex:['CH3–C(=O)–CH2–COO⁻','CH3–C(=O)–CH3']},
+ {a:'Acetoacetate',b:'β-Hydroxybutyrate',over:CO.nadhr,t:RT[1],why:'The ketone gains hydrogen from NADH and becomes a 2° alcohol: a reduction.',ex:['CH3–C(=O)–CH2–COO⁻','CH3–CH(OH)–CH2–COO⁻']},
+ {a:'2-Phosphoglycerate',b:'Phosphoenolpyruvate',over:CO.h2oL,t:RT[3],why:'Enolase removes water to make a C=C: dehydration (an elimination), which turns the phosphate into a high-energy one.',ex:['⁻OOC–CH(OPO3^2−)–CH2OH','⁻OOC–C(OPO3^2−)=CH2']},
+ {a:'Triacylglycerol + 3 H2O',b:'Glycerol + 3 Fatty acids',over:'(lipase)',t:RT[10],why:'Water breaks each ester bond: hydrolysis, the Chapter 6 reaction that lipase runs in the intestine and in fat cells.',ex:['triester','triol + 3 R–COOH']},
+ {a:'Fatty acyl CoA',b:'trans-Enoyl CoA',over:CO.fadh,t:RT[0],why:'First step of β-oxidation: two H atoms are removed to make a trans C=C, and FAD takes them. Same as succinate → fumarate.',ex:['R–CH2–CH2–C(=O)–S–CoA','R–CH=CH–C(=O)–S–CoA']},
+ {a:'trans-Enoyl CoA',b:'L-Hydroxyacyl CoA',over:CO.h2o,t:RT[2],why:'Water adds across the double bond, putting an –OH on the β carbon: hydration.',ex:['R–CH=CH–C(=O)–S–CoA','R–CH(OH)–CH2–C(=O)–S–CoA']},
+ {a:'L-Hydroxyacyl CoA',b:'β-Ketoacyl CoA',over:CO.nadh,t:RT[0],why:'The 2° alcohol is oxidized to a ketone and NAD+ becomes NADH: the third step of β-oxidation.',ex:['R–CH(OH)–CH2–C(=O)–S–CoA','R–C(=O)–CH2–C(=O)–S–CoA']},
+ {a:'Oxaloacetate + Acetyl CoA',b:'Citrate + CoA–SH',over:CO.h2o,t:RT[11],why:'Two molecules join (the acetyl carbon bonds to the keto carbon) and the small molecule CoA–SH is released: a condensation, run by citrate synthase.',ex:['C4 + C2','C6']},
+ {a:'Fatty acid + CoA–SH',b:'Fatty acyl CoA',over:'ATP → AMP + 2 Pi',t:RT[11],why:'Activation of a fatty acid joins it to CoA as a thioester with loss of water (paid for with the energy of two phosphate bonds): a condensation.',ex:['R–COO⁻ + HS–CoA','R–C(=O)–S–CoA']},
+ {a:'Glycogen (n glucose)',b:'Glucose 1-phosphate + Glycogen (n−1)',over:'+ Pi (glycogen phosphorylase)',t:RT[6],why:'A phosphate, not water, breaks the glycosidic bond and ends up on the released glucose: phosphorylation (phosphorolysis), so no ATP is needed to activate the glucose.',ex:['α-1,4 chain','G1P + shorter chain']},
+ {a:'Sucrose + H2O',b:'Glucose + Fructose',over:'(sucrase)',t:RT[10],why:'Water splits the acetal (glycosidic) bond between the two sugars: hydrolysis, the digestion step on the intestinal wall.',ex:['disaccharide','2 monosaccharides']},
+ {a:'Fructose 1,6-bisphosphate',b:'2 × Glyceraldehyde 3-phosphate',over:'(aldolase, then isomerase)',t:'Cleavage (split in two)',why:'The six-carbon sugar is cut into two three-carbon pieces (one is isomerized to match the other): the step that gives glycolysis its name, “sugar splitting”.',ex:['C6 bisphosphate','2 C3 phosphates']},
+];
+const rxnBag=bag(RXNS);
+function genRxn(){const r=rxnBag.next();const all=RT.concat(['Cleavage (split in two)']);const wrongs=others(all,r.t,3);
+ const html=`<p class="prompt">What <b>type of reaction</b> turns the reactant into the product?</p><div class="eq">${sub(esc(r.a))}<span class="over">${sub(esc(r.over||' '))}<b>→</b></span>${sub(esc(r.b))}</div><div class="eq" style="font-size:16px;font-weight:600;color:var(--muted);white-space:normal">${sub(esc(r.ex[0]))}<span class="over"><b>→</b></span>${sub(esc(r.ex[1]))}</div>`;
+ return mc(html,r.t,wrongs,r.why,'Compare the two structures: did H atoms leave (oxidation) or arrive (reduction)? Did H2O, CO2 or a phosphate come or go? Did an amino group swap with a C=O?')}
+
+/* ===== 4. Fuel Fates ===== */
+const FATES=[
+ {s:'A sprinter&rsquo;s leg muscle, 30 seconds into a 400 m race, cannot get oxygen fast enough.',q:'What happens to the pyruvate made by glycolysis?',a:'It is reduced to lactate so NAD+ is regenerated and glycolysis can continue',w:['It enters the citric acid cycle as usual','It is converted to ethanol and CO2','It is converted to glucose by gluconeogenesis'],why:'Without O2 the electron transport chain cannot recycle NADH, so lactate dehydrogenase uses pyruvate as the hydrogen acceptor. The muscle earns only 2 ATP per glucose but keeps running.',h:'No oxygen means NADH piles up; something must take its hydrogens.'},
+ {s:'Yeast in bread dough, buried in the dough with no oxygen.',q:'What are the final products of the yeast&rsquo;s glucose metabolism?',a:'Ethanol and CO2',w:['Lactate','Acetyl CoA and CO2','Glycogen'],why:'Yeast decarboxylate pyruvate to acetaldehyde and reduce it to ethanol; the CO2 makes the bread rise and the ethanol bakes off.',h:'What makes the dough rise?'},
+ {s:'Two hours after a large pasta dinner; blood glucose and insulin are high.',q:'What is the liver mainly doing with glucose?',a:'Storing it as glycogen (glycogenesis) and converting the excess to fatty acids',w:['Breaking down glycogen (glycogenolysis)','Making new glucose from amino acids','Making ketone bodies'],why:'Insulin signals the fed state: cells take up glucose, the liver and muscle build glycogen, and surplus acetyl CoA becomes fatty acids for storage as triacylglycerols.',h:'Insulin is the “store it” hormone.'},
+ {s:'Twelve hours after the last meal (overnight fast); glucagon is up, insulin is down.',q:'Where is the blood glucose coming from now?',a:'Liver glycogen breakdown (glycogenolysis), with gluconeogenesis starting up',w:['Muscle glycogen released into the blood','Ketone bodies being converted to glucose','Fatty acids being converted to glucose'],why:'Glucagon tells the liver to hydrolyze glycogen and release glucose; muscle glycogen lacks the enzyme to release free glucose and is kept for the muscle itself. As glycogen runs low, gluconeogenesis from lactate, glycerol and amino acids takes over.',h:'Only the liver can give its glycogen to the blood.'},
+ {s:'Three days into a fast. Liver glycogen is gone.',q:'What is the brain&rsquo;s main fuel now, besides the glucose the liver still makes?',a:'Ketone bodies (acetoacetate and β-hydroxybutyrate)',w:['Fatty acids','Lactate','Amino acids directly'],why:'Fatty acids cannot cross the blood–brain barrier, but ketone bodies can, and after a few days the brain gets most of its energy from them, which spares muscle protein.',h:'Fatty acids cannot reach the brain; what does the liver make from them?'},
+ {s:'A patient with untreated type 1 diabetes: no insulin, blood glucose 450 mg/dL, fruity breath.',q:'Why are ketone bodies high even though blood glucose is high?',a:'Without insulin the cells cannot take up glucose, so they burn fat as if starving, and acetyl CoA floods into ketone bodies',w:['High glucose is converted directly to ketone bodies','Insulin normally converts ketone bodies to glucose','Ketone bodies are made from excess glucose in the kidneys'],why:'Insulin is needed for glucose uptake by muscle and fat; without it the body is “starving in the midst of plenty.” Fat breakdown and β-oxidation surge, acetyl CoA outruns oxaloacetate, and ketogenesis takes over, dropping blood pH (ketoacidosis).',h:'Think of the cells, not the blood: can they use the glucose?'},
+ {s:'A marathon runner, two hours in, well supplied with oxygen.',q:'What fuel mix powers the muscles now?',a:'Mostly fatty acids by β-oxidation, with the remaining glycogen and blood glucose',w:['Only glycogen','Only ketone bodies','Mostly amino acids'],why:'With oxygen available and glycogen running down, muscle shifts to fatty acids, which deliver about 106 ATP each but need O2 for every one of them. “Hitting the wall” is glycogen running out.',h:'Plenty of oxygen plus hours of effort favors the fuel with the most ATP per molecule.'},
+ {s:'Lactate made by exercising muscle is carried to the liver.',q:'What does the liver do with it?',a:'Oxidizes it to pyruvate and rebuilds glucose by gluconeogenesis (the Cori cycle)',w:['Converts it to ketone bodies','Stores it as glycogen directly','Excretes it in the urine'],why:'The liver pays 6 ATP to turn 2 lactate back into glucose, which returns to the muscle. The muscle borrowed energy; the liver repays it.',h:'The pathway is named after the Coris.'},
+ {s:'A high-protein meal: more amino acids than the body needs for building proteins.',q:'What happens to the surplus amino acids?',a:'Their amino groups are removed and made into urea; the carbon skeletons are burned or stored as fat or glycogen',w:['They are stored as protein in the liver for later','They are excreted unchanged in the urine','They are converted to fatty acids including the nitrogen'],why:'The body has no storage form for amino acids. Transamination and deamination strip the nitrogen (to urea), and the keto-acid skeletons enter the citric acid cycle, gluconeogenesis or fatty-acid synthesis.',h:'Where does the nitrogen go? Where does the carbon go?'},
+ {s:'A patient on a strict zero-carbohydrate diet asks whether the body can make glucose from the fat they eat.',q:'What is the honest answer?',a:'Only the glycerol part of a fat can become glucose; fatty acids cannot, because acetyl CoA cannot be turned back into pyruvate',w:['Yes, fatty acids are converted to glucose by reversing β-oxidation','Yes, acetyl CoA is converted to pyruvate in the liver','No part of a fat can become glucose'],why:'Acetyl CoA enters the citric acid cycle and both of its carbons leave as CO2 before oxaloacetate is regenerated, so there is no net route from fatty acids to glucose. Glycerol (3 carbons) can enter gluconeogenesis.',h:'Count what happens to the two acetyl carbons in the cycle.'},
+ {s:'A newborn in a cool delivery room cannot shiver.',q:'How does brown fat keep the baby warm?',a:'A protein (thermogenin) lets H+ leak across the inner mitochondrial membrane, so fat is oxidized and the energy comes out as heat instead of ATP',w:['Brown fat burns ATP to release heat','Brown fat ferments glucose to lactate, which is warm','Brown fat stores heat absorbed from the mother'],why:'Uncoupling: the H+ gradient is spent as heat rather than through ATP synthase. The same idea, done by a drug (2,4-dinitrophenol), is lethal in adults.',h:'What normally keeps the H+ gradient and ATP synthesis coupled?'},
+ {s:'Someone is poisoned with cyanide, which binds cytochrome c oxidase (complex IV).',q:'Why does cell death follow even though the blood is well oxygenated?',a:'Electrons cannot be passed to O2, so electron transport stops, no H+ gradient forms, and ATP synthesis halts',w:['Cyanide removes oxygen from hemoglobin','Cyanide blocks glycolysis in the cytosol','Cyanide converts ATP to ADP'],why:'O2 is the final electron acceptor; blocking the complex that hands electrons to it stops the whole chain. Glycolysis alone (2 ATP per glucose) cannot keep the brain and heart alive.',h:'Complex IV is the last stop before oxygen.'},
+ {s:'During the first hour of fasting, blood glucose starts to drop.',q:'Which hormone rises, and from which organ?',a:'Glucagon, from the pancreas',w:['Insulin, from the pancreas','Glucagon, from the liver','Insulin, from the liver'],why:'The α cells of the pancreas release glucagon when blood glucose falls; it signals the liver to break down glycogen and later to start gluconeogenesis. Insulin (β cells) does the opposite after a meal.',h:'Both hormones come from the same organ; one says store, the other says release.'},
+ {s:'A toddler drinks a bottle of rubbing alcohol (isopropyl alcohol).',q:'The liver oxidizes it with alcohol dehydrogenase. What does the child&rsquo;s breath smell of, and why?',a:'Acetone, because a 2° alcohol is oxidized to a ketone, which the body cannot break down further',w:['Vinegar, because it becomes acetic acid','Formaldehyde, because it becomes an aldehyde','Nothing, because isopropyl alcohol is not metabolized'],why:'Isopropyl alcohol → acetone (a 2° alcohol gives a ketone, Chapter 4). Acetone cannot be oxidized further and is exhaled, the same compound that gives diabetic ketoacidosis its fruity smell.',h:'Which kind of alcohol is it: 1°, 2° or 3°?'},
+];
+const fateBag=bag(FATES);
+function genFates(){const f=fateBag.next();return mc(`<p class="prompt"><em>${f.s}</em><br><b>${f.q}</b></p>`,f.a,f.w,f.why,f.h,{cols:1})}
+
+/* ===== 5. Enzymes & Vitamins ===== */
+const ENZ=[
+ {e:'Hexokinase (glucose + ATP → glucose 6-phosphate)',c:'Transferase (a kinase moves a phosphate)'},
+ {e:'Lactate dehydrogenase (pyruvate ⇌ lactate)',c:'Oxidoreductase'},
+ {e:'Succinate dehydrogenase (succinate → fumarate)',c:'Oxidoreductase'},
+ {e:'Fumarase (fumarate + H2O → malate)',c:'Lyase (adds across a double bond, no ATP)'},
+ {e:'Citrate synthase (acetyl CoA + oxaloacetate → citrate)',c:'Transferase (moves the acetyl group onto oxaloacetate)'},
+ {e:'Pyruvate kinase (PEP + ADP → pyruvate + ATP)',c:'Transferase (a kinase moves a phosphate)'},
+ {e:'Triose phosphate isomerase (DHAP ⇌ glyceraldehyde 3-phosphate)',c:'Isomerase'},
+ {e:'Salivary amylase (starch + H2O → maltose)',c:'Hydrolase'},
+ {e:'Pancreatic lipase (triacylglycerol + H2O → fatty acids + glycerol)',c:'Hydrolase'},
+ {e:'Alanine aminotransferase (alanine + α-ketoglutarate → pyruvate + glutamate)',c:'Transferase (moves an amino group)'},
+ {e:'Pyruvate carboxylase (pyruvate + CO2 + ATP → oxaloacetate)',c:'Ligase (joins with ATP energy)'},
+ {e:'Aldolase (fructose 1,6-bisphosphate → two 3-carbon sugars)',c:'Lyase (breaks a C–C bond without water)'},
+ {e:'Glycogen phosphorylase (glycogen + Pi → glucose 1-phosphate)',c:'Transferase (moves a glucose onto phosphate)'},
+ {e:'Glutamate dehydrogenase (glutamate → α-ketoglutarate + NH4^+)',c:'Oxidoreductase'},
+ {e:'Phosphoglucose isomerase (glucose 6-P ⇌ fructose 6-P)',c:'Isomerase'},
+];
+const CLASSES=['Oxidoreductase','Transferase (a kinase moves a phosphate)','Transferase (moves the acetyl group onto oxaloacetate)','Transferase (moves an amino group)','Transferase (moves a glucose onto phosphate)','Hydrolase','Lyase (adds across a double bond, no ATP)','Lyase (breaks a C–C bond without water)','Isomerase','Ligase (joins with ATP energy)'];
+const SIMPLE=c=>c.split(' (')[0];
+const VIT=[
+ {v:'Niacin (vitamin B3)',co:'NAD^+ / NADH',use:'hydrogen carrier in dehydrogenase reactions (glycolysis, citric acid cycle, β-oxidation)'},
+ {v:'Riboflavin (vitamin B2)',co:'FAD / FADH2',use:'hydrogen carrier for succinate dehydrogenase and the first step of β-oxidation'},
+ {v:'Pantothenic acid (vitamin B5)',co:'Coenzyme A (CoA–SH)',use:'carries acetyl and acyl groups as thioesters (acetyl CoA, fatty acyl CoA)'},
+ {v:'Thiamine (vitamin B1)',co:'Thiamine pyrophosphate (TPP)',use:'decarboxylation of pyruvate and α-ketoglutarate (the two oxidative decarboxylations)'},
+ {v:'Pyridoxine (vitamin B6)',co:'Pyridoxal phosphate (PLP)',use:'transamination: carries the amino group between amino acids and keto acids'},
+ {v:'Biotin (vitamin B7)',co:'Biotin (bound to the enzyme)',use:'carboxylation: adds CO2 in pyruvate carboxylase (gluconeogenesis) and fatty-acid synthesis'},
+ {v:'Folate (vitamin B9)',co:'Tetrahydrofolate (THF)',use:'carries one-carbon units for making nucleotides and some amino acids'},
+ {v:'Cobalamin (vitamin B12)',co:'Methylcobalamin / deoxyadenosylcobalamin',use:'methyl transfers and the breakdown of odd-chain fatty acids; needs intrinsic factor to be absorbed'},
+];
+const enzBag=bag(ENZ.map(x=>['e',x]).concat(VIT.map(x=>['v',x]),VIT.map(x=>['u',x])));
+function genEnz(){const [kind,x]=enzBag.next();
+ if(kind==='e'){const wrongs=others(CLASSES.filter(c=>SIMPLE(c)!==SIMPLE(x.c)),x.c,3);const w2=[];const seen=new Set([SIMPLE(x.c)]);for(const c of shuf(CLASSES)){if(!seen.has(SIMPLE(c))){seen.add(SIMPLE(c));w2.push(c)}if(w2.length===3)break}
+  return mc(`<p class="prompt">Which <b>enzyme class</b> does this enzyme belong to?</p><div class="eq" style="white-space:normal">${sub(esc(x.e))}</div>`,x.c,w2,`${SIMPLE(x.c)}. Read the reaction: oxidoreductases move hydrogens or electrons, transferases move a group (phosphate, acetyl, amino), hydrolases use water, lyases add or remove across a double bond without water or ATP, isomerases rearrange, ligases join two molecules using ATP.`,'Look at what the reaction does: hydrogens moved? a group transferred? water added? a double bond made or broken without water? atoms rearranged? two molecules joined with ATP?')}
+ if(kind==='v'){const wrongs=others(VIT.map(v=>v.co),x.co,3);return mc(`<p class="prompt">Which <b>coenzyme</b> is made from <b>${esc(x.v)}</b>?</p>`,x.co,wrongs,`${x.v} → ${x.co}: ${x.use}.`,'Match the vitamin name to the coenzyme that contains it.')}
+ const wrongs=others(VIT.map(v=>v.use),x.use,3);return mc(`<p class="prompt">What job does the coenzyme <b>${sub(esc(x.co))}</b> (from ${esc(x.v)}) do in metabolism?</p>`,x.use,wrongs,`${x.co}: ${x.use}.`,'Think of the reactions where you have written this coenzyme over the arrow.',{cols:1})}
+
+/* ===== modes, state, journey ===== */
+const MODES=[
+ {id:'order',title:'Pathway Order',short:'Tap the stops in order',icon:'<path d="M8 36h8l6-20h8l6 20h8"/><circle cx="8" cy="36" r="3"/><circle cx="40" cy="36" r="3"/><circle cx="24" cy="12" r="3"/>'},
+ {id:'count',title:'Count the Coenzymes',short:'NADH, FADH₂, ATP, CO₂',icon:'<rect x="8" y="8" width="32" height="32" rx="6"/><path d="M16 18h16M16 26h10M16 34h14"/>'},
+ {id:'rxn',title:'Name the Reaction',short:'Oxidation? Hydration? Transamination?',icon:'<path d="M6 24h14m8 0h14"/><path d="M34 18l8 6-8 6"/><circle cx="24" cy="24" r="4"/>'},
+ {id:'fates',title:'Fuel Fates',short:'Fed, fasting, sprinting, diabetic',icon:'<path d="M24 6c6 8 12 12 12 20a12 12 0 0 1-24 0c0-8 6-12 12-20z"/><path d="M24 22c3 4 5 6 5 9a5 5 0 0 1-10 0c0-3 2-5 5-9z"/>'},
+ {id:'enz',title:'Enzymes & Vitamins',short:'Classes and coenzymes',icon:'<circle cx="18" cy="24" r="10"/><path d="M28 20h8a4 4 0 0 1 0 8h-8"/><path d="M14 24h8"/>'},
+ {id:'exam',title:'Exam Practice',short:'Final-exam style multiple choice',icon:'<rect x="11" y="8" width="26" height="33" rx="4"/><path d="M19 5h10v6H19z"/><path d="m16 20 3 3 5-6M16 31l3 3 5-6M28 21h4M28 32h4"/>'},
+];
+const GEN={order:genOrder,count:genCount,rxn:genRxn,fates:genFates,enz:genEnz};
+const JKEY='itsdrdan-metabolism-journey-v1';
+const jBlank=()=>({xp:0,correct:0,assisted:0,best:0,modes:{},badges:{}});
+let journey=jBlank();try{const j=JSON.parse(localStorage.getItem(JKEY));if(j&&typeof j.xp==='number')journey=Object.assign(jBlank(),j)}catch{}
+const jSave=()=>{try{localStorage.setItem(JKEY,JSON.stringify(journey))}catch{}};
+const BADGES=[
+ {id:'first',t:'🌱 First Answer',d:'Answer your first question',ok:j=>j.correct>=1},
+ {id:'ten',t:'🔟 Ten Correct',d:'10 independent answers',ok:j=>j.correct>=10},
+ {id:'fifty',t:'🏅 Fifty Correct',d:'50 independent answers',ok:j=>j.correct>=50},
+ {id:'streak5',t:'🔥 Hot Streak',d:'5 correct in a row',ok:j=>j.best>=5},
+ {id:'streak10',t:'⚡ On Fire',d:'10 correct in a row',ok:j=>j.best>=10},
+ {id:'pacer',t:'🏃 Pacer',d:'10 correct in Pathway Order',ok:j=>(j.modes.order||0)>=10},
+ {id:'accountant',t:'🧮 ATP Accountant',d:'10 correct in Count the Coenzymes',ok:j=>(j.modes.count||0)>=10},
+ {id:'namer',t:'🔁 Reaction Namer',d:'10 correct in Name the Reaction',ok:j=>(j.modes.rxn||0)>=10},
+ {id:'explorer',t:'🧭 Explorer',d:'Answer in all six modes',ok:j=>MODES.every(m=>(j.modes[m.id]||0)>0)}
+];
+const LGN='#2e2b38';
+const LGFACE={
+ normal:`<circle cx="84" cy="96" r="6" fill="${LGN}"/><circle cx="116" cy="96" r="6" fill="${LGN}"/><circle cx="86" cy="94" r="2" fill="#fff"/><circle cx="118" cy="94" r="2" fill="#fff"/><path d="M90 112q10 8 20 0" fill="none" stroke="${LGN}" stroke-width="4" stroke-linecap="round"/>`,
+ happy:`<path d="M76 98q8-12 16 0M108 98q8-12 16 0" fill="none" stroke="${LGN}" stroke-width="4" stroke-linecap="round"/><path d="M86 108q14 14 28 0q-4 14-14 14t-14-14z" fill="#f2576c" stroke="${LGN}" stroke-width="3" stroke-linejoin="round"/>`,
+ wow:`<circle cx="84" cy="96" r="9" fill="${LGN}"/><circle cx="116" cy="96" r="9" fill="${LGN}"/><circle cx="87" cy="93" r="3" fill="#fff"/><circle cx="119" cy="93" r="3" fill="#fff"/><ellipse cx="100" cy="116" rx="7" ry="9" fill="${LGN}"/>`,
+ hmm:`<circle cx="84" cy="96" r="6" fill="${LGN}"/><circle cx="116" cy="96" r="6" fill="${LGN}"/><path d="M76 86l14 4M124 86l-14 4" stroke="${LGN}" stroke-width="3" stroke-linecap="round"/><path d="M90 116q10-6 20 0" fill="none" stroke="${LGN}" stroke-width="4" stroke-linecap="round"/>`
+};
+let mascotT=0;function mascot(kind,hold){const m=$('mascot'),f=$('lgFace');kind=kind||'normal';f.innerHTML=LGFACE[kind]||LGFACE.normal;m.dataset.mood='';void m.offsetWidth;m.dataset.mood=kind;clearTimeout(mascotT);if(hold)mascotT=setTimeout(()=>mascot('normal'),hold)}
+let toastT=0;function toast(t){const el=$('toast');el.textContent=t;el.classList.add('show');clearTimeout(toastT);toastT=setTimeout(()=>el.classList.remove('show'),2600)}
+function renderJourney(){const lvl=Math.floor(journey.xp/100)+1,into=journey.xp%100;$('jChip').textContent=`Level ${lvl} • ${journey.xp} XP`;$('xpLevel').textContent='Level '+lvl;$('xpFill').style.width=into+'%';$('xpText').textContent=into+' / 100 XP';
+ $('modeXp').innerHTML=MODES.map(m=>`<div><b>${journey.modes[m.id]||0}</b>${m.title}</div>`).join('');
+ $('jbadges').innerHTML=BADGES.map(b=>`<div class="jbadge ${journey.badges[b.id]?'earned':''}"><div class="bt">${b.t}</div>${b.d}</div>`).join('')}
+function awardXP(assisted){const before=Math.floor(journey.xp/100);if(assisted){journey.xp+=2;journey.assisted++}else{journey.xp+=10+Math.min(state.streak,5)*2;journey.correct++;journey.modes[state.mode]=(journey.modes[state.mode]||0)+1;journey.best=Math.max(journey.best,state.streak)}
+ BADGES.forEach(b=>{if(!journey.badges[b.id]&&b.ok(journey)){journey.badges[b.id]=1;toast('Badge earned: '+b.t)}});if(Math.floor(journey.xp/100)>before)toast('Level up! You reached level '+(Math.floor(journey.xp/100)+1));jSave();renderJourney()}
+const state={mode:'order',q:null,selected:null,done:false,revealed:false,correct:0,streak:0,assisted:0};
+function buildModes(){$('modeGrid').innerHTML=MODES.map(m=>`<button class="mode-btn ${m.id===state.mode?'active':''}" data-mode="${m.id}" aria-pressed="${m.id===state.mode}"><span class="mode-icon"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${m.icon}</svg></span><span class="mode-name">${m.title}</span><span class="mode-short">${m.short}</span></button>`).join('');
+ $('modeGrid').querySelectorAll('.mode-btn').forEach(b=>b.onclick=()=>{state.mode=b.dataset.mode;$('modeGrid').querySelectorAll('.mode-btn').forEach(x=>{x.classList.toggle('active',x===b);x.setAttribute('aria-pressed',x===b)});nextQ()})}
+function fb(k,h){const f=$('feedback');f.className='feedback '+k;f.innerHTML=h}
+function nextQ(){['checkBtn','hintBtn','showBtn'].forEach(id=>$(id).disabled=false);if(state.mode==='exam'){examEnter();return}
+ const q=GEN[state.mode]();mascot('normal');state.q=q;state.selected=null;state.done=false;state.revealed=false;$('hintBox').className='hintbox';$('hintBox').textContent='';fb('','');
+ $('modeTitle').innerHTML='<span class="mode-tag">Mode</span>'+esc(MODES.find(m=>m.id===state.mode).title);$('practice').dataset.mode=state.mode;
+ const area=$('questionArea');
+ if(q.kind==='mc'){area.innerHTML=q.html+`<div class="options ${q.cols===1?'cols1':''}" role="group" aria-label="Answer choices">${q.options.map((o,i)=>`<button type="button" class="option" data-key="${esc(o.key)}" aria-pressed="false"><span class="opt-letter">${'ABCD'[i]}</span><span>${o.html}</span></button>`).join('')}</div>`;
+  area.querySelectorAll('.option').forEach(b=>b.onclick=()=>{if(state.done)return;state.selected=b.dataset.key;area.querySelectorAll('.option').forEach(x=>{x.classList.toggle('sel',x===b);x.setAttribute('aria-pressed',x===b)})})}
+ else{area.innerHTML=q.html;q.mount()}
+ updateStats();window.scrollTo({top:Math.max(0,$('practice').getBoundingClientRect().top+window.scrollY-10),behavior:'smooth'})}
+function updateStats(){$('correct').textContent=state.correct;$('streak').textContent=state.streak;$('assisted').textContent=state.assisted}
+function ddLog(ok){try{const q=state.q;if(!q||q.ddLogged||!window.ddTrack)return;q.ddLogged=1;const m=MODES.find(x=>x.id===state.mode);ddTrack({game:'metabolism',course:'3B',mode:'Practice',topic:m?m.title:state.mode,correct:!!ok})}catch(e){}}
+function finish(){ddLog(!state.revealed&&!state.q.missed);state.done=true;['checkBtn','hintBtn','showBtn'].forEach(id=>$(id).disabled=true);const q=state.q;
+ if(q.kind==='mc')$('questionArea').querySelectorAll('.option').forEach(b=>{b.disabled=true;if(b.dataset.key===q.answer)b.classList.add('right')});else if(q.lock)q.lock();
+ if(state.revealed){state.assisted++;state.streak=0;awardXP(true);mascot('normal');fb('good','👀 '+(q.kind==='mc'?'<b>'+sub(esc(q.answer))+'.</b> ':'')+q.why+'<br><small>Assisted: this question earns no point. Try the next one on your own.</small>')}
+ else{state.correct++;state.streak++;awardXP(false);confetti();mascot(state.streak>=3?'wow':'happy',3500);fb('good','✅ Correct! '+q.why)}
+ updateStats();$('nextBtn').focus()}
+function check(){if(state.done)return;const q=state.q;
+ if(q.kind==='mc'){if(!state.selected){fb('bad','👆 Tap an answer first, then press Check Answer.');return}
+  if(state.selected===q.answer)return finish();q.missed=true;const b=$('questionArea').querySelector(`.option[data-key="${CSS.escape(state.selected)}"]`);b.classList.remove('sel');b.classList.add('wrong');b.disabled=true;state.selected=null;state.streak=0;mascot('hmm',2200);fb('bad','🔎 Not quite. Try again! Stuck? Tap Hint.');return}
+ const r=q.check();if(r.ok===null){fb('bad','👆 '+r.msg);return}if(r.ok)return finish();q.missed=true;state.streak=0;mascot('hmm',2200);fb('bad','🔎 '+r.msg)}
+function hint(){if(state.done)return;const h=$('hintBox');h.innerHTML='💡 '+state.q.hint;h.className='hintbox show'}
+function show(){if(state.done)return;state.revealed=true;if(state.q.kind==='mc')state.selected=state.q.answer;else state.q.revealI();finish()}
+function confetti(){if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;const box=$('celebrate'),cols=['#ff7d73','#70b7e8','#8fd8c8','#f7c968','#b9a3e6','#f2a8c4'];for(let i=0;i<50;i++){const p=document.createElement('i');p.className='confetti';p.style.left=Math.random()*100+'vw';p.style.top='-20px';p.style.background=cols[i%6];p.style.animationDelay=Math.random()*.5+'s';box.appendChild(p);setTimeout(()=>p.remove(),3600)}}
+
+/* ===== Exam Practice: Final Boss metabolism questions via the shared FBX module (textbook repo) ===== */
+let FBXI=null,FBXLOADING=false;
+function examEnter(){state.q=null;state.done=true;mascot('normal');$('modeTitle').innerHTML='<span class="mode-tag">Mode</span>Exam Practice';$('practice').dataset.mode='exam';
+ if(FBXI||FBXLOADING)return;if(!window.FBX){$('fbxHost').textContent='Exam Practice could not load. Try reloading the page.';return}
+ FBXLOADING=true;$('fbxHost').innerHTML='<p class="footer-note">Loading the Final Boss metabolism questions…</p>';
+ fetch('https://itsdrdan.github.io/textbook/bank/metabolism.json').then(r=>r.json()).then(items=>{FBXI=FBX.mount($('fbxHost'),items,{topics:[['metabolism','Metabolism','⚡']],storageKey:'itsdrdan-metabolism-exam-v1',onAnswer:examAnswer});const s=$('fbxHost').querySelector('.fbx-tsel');if(s)s.hidden=true}).catch(e=>{console.error(e);$('fbxHost').textContent='Exam Practice could not load the question bank. Check your connection and reload.'}).finally(()=>FBXLOADING=false)}
+function examAnswer(item,correct,info){
+ try{if(window.ddTrack)ddTrack({game:'metabolism',course:'3B',mode:'Exam Practice',topic:info.topic,correct:!!correct})}catch(e){}
+ if(correct){state.correct++;state.streak++;awardXP(false);confetti();mascot(state.streak>=3?'wow':'happy',3500)}else{state.assisted++;state.streak=0;awardXP(true);mascot('hmm',2600)}
+ updateStats()}
+
+/* ===== boot ===== */
+$('checkBtn').onclick=check;$('hintBtn').onclick=hint;$('showBtn').onclick=show;$('nextBtn').onclick=nextQ;
+$('journeyReset').onclick=()=>{if(confirm('Reset your XP, badges and streaks in this browser?')){journey=jBlank();jSave();renderJourney();toast('Progress reset')}};
+document.addEventListener('keydown',e=>{if(e.key==='Enter'&&!state.done&&state.mode!=='exam'&&!(e.target&&e.target.tagName==='BUTTON'))check()});
+try{const m=new URLSearchParams(location.search).get('mode');if(m&&GEN[m]||m==='exam')state.mode=m}catch{}
+mascot('normal');buildModes();renderJourney();nextQ();
+</script>
+</body></html>

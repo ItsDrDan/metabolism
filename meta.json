@@ -1,0 +1,27 @@
+{
+  "title": "Metabolic Marathon — Metabolism",
+  "author": "Dr. Dan (ItsDrDan)",
+  "course": "CHEM 3B",
+  "description": "Practice CHEM 3B metabolism (Chapters 13–15) in six modes: Pathway Order (tap the stops of glycolysis, the citric acid cycle, β-oxidation, ketogenesis, the urea pathway, electron transport and the Cori cycle in order), Count the Coenzymes (NADH, FADH2, ATP and CO2 bookkeeping, including ATP from any fatty acid), Name the Reaction (oxidation, reduction, hydration, decarboxylation, phosphorylation, isomerization, transamination and more from before/after structures), Fuel Fates (fed, fasting, sprinting, marathon, diabetes, cyanide, brown fat), Enzymes & Vitamins (enzyme classes and the coenzymes made from B vitamins), and Exam Practice (111 Final Boss metabolism questions).",
+  "icon": "⚡",
+  "tags": [
+    "chemistry",
+    "CHEM 3B",
+    "biochemistry",
+    "metabolism",
+    "glycolysis",
+    "citric acid cycle",
+    "electron transport",
+    "ATP",
+    "beta-oxidation",
+    "ketone bodies",
+    "urea cycle",
+    "transamination",
+    "enzymes",
+    "vitamins",
+    "coenzymes"
+  ],
+  "version": "1",
+  "status": "working",
+  "logo": "logo.svg"
+}
