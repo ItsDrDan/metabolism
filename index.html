@@ -1332,7 +1332,6 @@ function showSolution() {
   if (!state.logged) { ddLog(false, 'gave-up'); P.tried++; bumpTopic(q.topic, false); P.streak = 0; if (state.quiz) state.quiz.results.push({ topic: q.topic, tag: q.tag, ok: false }); }
   state.done = true; state.helped = true;
   if (q.kind === 'fields') q.fields.forEach((fd, i) => { const el = $('fd' + i); el.value = fd.value; el.classList.remove('bad'); el.classList.add('ok'); });
-  if (q.kind === 'multi') { q.sel = q.rows.map(() => null); h += `<div class="mrows">${q.rows.map((r, i) => `<div class="mrow" data-row="${i}"><span class="mlabel">${r.label}</span><div class="mchoices">${r.choices.map((c, k) => `<button type="button" class="choice" data-mr="${i}" data-mk="${k}" aria-pressed="false">${c.html}</button>`).join('')}</div></div>`).join('')}</div><div class="check-row"><button type="button" class="btn primary" id="checkBtn">Check</button></div>`; }
   if (q.kind === 'order') { state.picked = q.seq.map(s => q.order.indexOf(s)); renderSeq(true); }
   save(); renderStats();
   setFeedback('info', `<b>Answer: ${q.answer}</b><div class="sol">${q.solution}</div>`); finishQuestion();
