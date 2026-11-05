@@ -72,4 +72,4 @@ Each is cut to **256 × 256 transparent WebP** and saved in `assets/`.
 | `assets/cat-rosa.webp` | A manila case folder with a paper clip, a glucose meter peeking out, and Mito’s small face on the tab |
 | `assets/ach-rosa.webp` | A case folder stamped with a gold check mark ("Case Closed") |
 
-Until these exist, the brand-kit checklist badge stands in.
+Done (Nov 2026): both files are in `assets/`.
