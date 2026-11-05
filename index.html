@@ -1133,6 +1133,18 @@ const ACH = [
   ['boss', 'Boss Fight', '10 Final Boss questions right', 'ach-boss', 'target', P => (P.boss || 0) >= 10]
 ];
 const PREP_PLAN = ['table', 'rxn', 'coenz', 'count', 'fatty', 'where', 'diagram', 'exam', 'exam', 'fates'];
+/* Rosa's Case Files show only when the game is opened from the CHEM 3B textbook (LibreTexts embed or link, or a ?topic=rosa… link).
+   On the study hub, Canvas or a direct visit the group, its topics and its achievement are removed. ?src=book also turns it on. */
+const BOOK_MODE = (() => { try { const sp = new URLSearchParams(location.search);
+  if (sp.get('src') === 'book' || /(^|,)rosa/.test(sp.get('topic') || '') || /(^|\.)libretexts\.org/.test((document.referrer && new URL(document.referrer).hostname) || '')) return true;
+  return sessionStorage.getItem('ddRosaBook') === '1'; } catch (e) { return false; } })();
+if (BOOK_MODE) { try { sessionStorage.setItem('ddRosaBook', '1'); } catch (e) {} }
+else {
+  const ci = CATEGORIES.findIndex(c => c.id === 'rosa'); if (ci >= 0) CATEGORIES.splice(ci, 1);
+  ['rosa13', 'rosa14', 'rosa15', 'rosarx'].forEach(t => delete TOPICS[t]);
+  const ai = ACH.findIndex(x => x[0] === 'rosa'); if (ai >= 0) ACH.splice(ai, 1);
+  const all = ACH.find(x => x[0] === 'all'); if (all) all[2] = 'Get a question right in all four groups';
+}
 const state = { sel: new Set(), quiz: null, q: null, tries: 0, helped: false, done: false, logged: false, guideOn: false, boss: false, picked: [] };
 let P = null;
 const fresh = () => ({ xp: 0, correct: 0, tried: 0, streak: 0, best: 0, topic: {}, ach: {}, noHelp: 0, bestPrep: 0, boss: 0, sel: [] });
