@@ -63,3 +63,13 @@ Each is cut to **256 × 256 transparent WebP** and saved in `assets/`.
 - `metabolism/assets/mascot/mito-<idle|thinking|correct|oops|victory>.webp` (5 files)
 - `metabolism/assets/cat-pathways.webp` … `metabolism/assets/ach-boss.webp` (17 files)
 - `games/assets/games/metabolism.webp` (the study hub card; that file lives in the games repo)
+
+
+## Added for Rosa’s Case Files (Nov 2026)
+
+| File | Subject |
+|---|---|
+| `assets/cat-rosa.webp` | A manila case folder with a paper clip, a glucose meter peeking out, and Mito’s small face on the tab |
+| `assets/ach-rosa.webp` | A case folder stamped with a gold check mark ("Case Closed") |
+
+Until these exist, the brand-kit checklist badge stands in.
