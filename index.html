@@ -5,7 +5,7 @@
 <link rel="icon" type="image/webp" href="assets/mascot/mito-idle.webp">
 <style>
 :root{
- --bg:#f5f6fb;--surface:#fff;--ink:#1f2a44;--muted:#4f5a74;--faint:#6f7890;--line:#e3e6f0;--line2:#d5d9e8;
+ --bg:#f5f6fb;--surface:#fff;--ink:#1f2a44;--muted:#4f5a74;--faint:#646c82;--line:#e3e6f0;--line2:#d5d9e8;
  --accent:#4b57d1;--accent-d:#3c47b8;--accent-soft:#eef0fe;--mint:#e8f6ef;--mint-ink:#23704f;--mint-line:#a9d9c2;
  --amber:#fff6e2;--amber-ink:#80601a;--amber-line:#f0dca6;--rose:#fdedf0;--rose-ink:#9c3346;--rose-line:#eab3bd;--lav:#f3effd;--sky:#eaf4fb;
  --orange:#d9743f;--orange-soft:#fdeee8;--c3B:#86509b;--c3B-bg:#f2e8f7;
@@ -139,7 +139,7 @@ table.data{margin:6px auto 12px;border-collapse:collapse;font-size:1.02rem;backg
 .stat-row{display:grid;grid-template-columns:1.6fr repeat(4,1fr);gap:9px;margin-bottom:14px}.stat{border-radius:var(--r-sm);padding:10px 12px;background:#f5f6fa}.stat strong{display:block;font-size:1.3rem;line-height:1.2}.stat small{color:var(--muted);font-weight:700;font-size:.78rem}.stat.rank{background:var(--lav)}.stat.rank strong{font-size:1.04rem}
 .badges{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:8px}
 .badge{display:grid;grid-template-columns:auto 1fr;gap:0 10px;align-items:center;border:1px solid var(--line);border-radius:var(--r-sm);padding:8px 10px;background:#fafbfd;color:var(--faint)}
-.badge img{grid-row:span 2;width:44px;height:44px;object-fit:contain;filter:grayscale(1);opacity:.4}.badge b{font-size:.88rem;color:#7a8299;line-height:1.2}.badge small{font-size:.76rem;line-height:1.3}
+.badge img{grid-row:span 2;width:44px;height:44px;object-fit:contain;filter:grayscale(1);opacity:.4}.badge b{font-size:.88rem;color:#656c83;line-height:1.2}.badge small{font-size:.76rem;line-height:1.3}
 .badge.got{border-color:#ead9a0;background:linear-gradient(135deg,#fffbf1,#fbf4ff);color:var(--muted)}.badge.got b{color:var(--ink)}.badge.got img{filter:none;opacity:1}
 .section-foot{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-top:12px}
 .reset-btn{border:1px solid var(--rose-line);background:#fff;color:var(--rose-ink);border-radius:11px;padding:8px 13px;font-weight:750;min-height:44px}.reset-btn.armed{background:var(--rose)}
@@ -256,7 +256,7 @@ html.dd-embedded{scroll-padding-top:8px}
    <div class="detail" id="hintBox" hidden></div>
    <div class="next-row"><button type="button" id="nextBtn" class="btn primary" hidden>Next question <span data-icon="arrow" aria-hidden="true"></span></button></div>
   </div>
-  <p class="note-small" style="opacity:.8">This game collects anonymous practice stats (no names or student IDs) to help plan new lessons.<br><span class="dd-credit" style="display:inline-block;margin-top:6px"><strong>Game design and chemistry by ItsDrDan.</strong><br>I used AI (Claude by Anthropic) to help write the code, the way I hope you'll use it: as a tool, while checking every answer and understanding the chemistry and math behind it.</span></p>
+  <p class="note-small">This game collects anonymous practice stats (no names or student IDs) to help plan new lessons.<br><span class="dd-credit" style="display:inline-block;margin-top:6px"><strong>Game design and chemistry by ItsDrDan.</strong><br>I used AI (Claude by Anthropic) to help write the code, the way I hope you'll use it: as a tool, while checking every answer and understanding the chemistry and math behind it.</span></p>
  </main>
 
  <section class="panel section" aria-labelledby="progressTitle">
@@ -743,7 +743,7 @@ const CAC_STEP = { 1: ['+ acetyl CoA'], 2: [], 3: ['NAD⁺ → NADH', 'CO₂ out
 function cacSVG(mark = {}) {
   const cx = 280, cy = 240, R = 165, rad = d => d * Math.PI / 180, P = (d, r) => [cx + r * Math.cos(rad(d)), cy + r * Math.sin(rad(d))];
   let o = `<defs><marker id="ah" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#6c5a9c"/></marker></defs>`;
-  o += `<text x="${cx}" y="${cy - 4}" text-anchor="middle" font-size="19" font-weight="700" fill="#5b4790" font-family="Fredoka,Nunito,Arial,sans-serif">Citric acid cycle</text><text x="${cx}" y="${cy + 18}" text-anchor="middle" font-size="13.5" fill="#6f7890" font-family="Nunito,Arial,sans-serif">(mitochondrial matrix)</text>`;
+  o += `<text x="${cx}" y="${cy - 4}" text-anchor="middle" font-size="19" font-weight="700" fill="#5b4790" font-family="Fredoka,Nunito,Arial,sans-serif">Citric acid cycle</text><text x="${cx}" y="${cy + 18}" text-anchor="middle" font-size="13.5" fill="#646c82" font-family="Nunito,Arial,sans-serif">(mitochondrial matrix)</text>`;
   for (let k = 1; k <= 8; k++) {
     const from = -90 + 45 * ((k + 6) % 8), a0 = from + 13, a1 = from + 45 - 13, [x0, y0] = P(a0, R), [x1, y1] = P(a1, R);
     o += `<path d="M${x0.toFixed(1)} ${y0.toFixed(1)} A${R} ${R} 0 0 1 ${x1.toFixed(1)} ${y1.toFixed(1)}" fill="none" stroke="#6c5a9c" stroke-width="3" marker-end="url(#ah)"/>`;
@@ -779,7 +779,7 @@ const boxHTML = (mark = {}) => flowHTML(BOX_NODES, BOX_ARROW, mark, [{ title: '�
 function ureaSVG(mark = {}) {
   const N = [['Ornithine', 120, 210], ['Citrulline', 290, 80], ['Argininosuccinate', 460, 210], ['Arginine', 290, 340]];
   let o = `<defs><marker id="uh" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#3b7f6a"/></marker><marker id="uh2" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#9c6a2c"/></marker></defs>`;
-  o += `<text x="290" y="205" text-anchor="middle" font-size="19" font-weight="700" fill="#2f6e5a" font-family="Fredoka,Nunito,Arial,sans-serif">Urea cycle</text><text x="290" y="226" text-anchor="middle" font-size="13.5" fill="#6f7890" font-family="Nunito,Arial,sans-serif">(liver)</text>`;
+  o += `<text x="290" y="205" text-anchor="middle" font-size="19" font-weight="700" fill="#2f6e5a" font-family="Fredoka,Nunito,Arial,sans-serif">Urea cycle</text><text x="290" y="226" text-anchor="middle" font-size="13.5" fill="#646c82" font-family="Nunito,Arial,sans-serif">(liver)</text>`;
   const arcs = [['M150 182 Q170 95 228 82', 1, 200, 140], ['M352 82 Q420 95 440 182', 2, 380, 140], ['M440 238 Q420 325 352 338', 3, 380, 282], ['M228 338 Q170 325 150 238', 4, 200, 282]];
   arcs.forEach(([d, k, sx, sy]) => { o += `<path d="${d}" fill="none" stroke="#3b7f6a" stroke-width="3" marker-end="url(#uh)"/><text x="${sx}" y="${sy + 5}" text-anchor="middle" font-size="12" font-weight="800" fill="#9aa1b4">${k}</text>`; if (mark.step === k) o += starSVG(sx + (sx < 290 ? 24 : -24), sy + (sy < 200 ? 22 : -22)); });
   const side = [['M40 40 Q90 70 175 120', 'carbamoyl phosphate (from NH₄⁺)', 30, 30, 'start'], ['M540 40 Q490 70 410 120', 'aspartate (2nd N)', 550, 30, 'end'], ['M420 300 Q480 330 535 370', 'fumarate → citric acid cycle', 550, 392, 'end'], ['M165 300 Q100 330 45 370', 'urea → kidneys', 30, 392, 'start']];
