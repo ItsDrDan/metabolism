@@ -17,4 +17,4 @@ Live at https://itsdrdan.github.io/metabolism/
   reaction types and reading diagrams; full glycolysis and citric acid cycle orders are marked "Challenge".
 - `tools/build_game.py` builds other CHEM 3B games from the **v1** engine (git history before the v2 rebuild); it does not work on this v2 file.
 
-Game design and chemistry by ItsDrDan. Code written with AI assistance (Claude) and checked by the author. CC BY-NC-SA 4.0.
+Game design and chemistry by ItsDrDan. Code written with AI assistance (Claude) and checked by the author. © ItsDrDan, all rights reserved; free to play, reuse by permission only (see LICENSE).
