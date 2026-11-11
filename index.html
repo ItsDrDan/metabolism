@@ -218,6 +218,12 @@ html.dd-embedded{scroll-padding-top:8px}
 <script src="https://itsdrdan.github.io/games/brand/embed.js" defer></script>
 <script src="https://itsdrdan.github.io/games/track.js" defer></script>
 <script src="https://itsdrdan.github.io/textbook/js/fbx.js" defer></script>
+<script src="https://itsdrdan.github.io/questionbank/whys.js" defer></script>
+<script>
+/* Per-choice "why" feedback from the shared question bank (itsdrdan.github.io/questionbank/whys.js).
+   qbWhy(item, picked, ctx) returns a short reason the picked wrong choice is wrong, or '' if it can't tell (or is offline). */
+function qbWhy(item,picked,ctx){try{return window.QBWhy?(QBWhy.reason(item,picked,ctx)||''):''}catch(e){return ''}}
+</script>
 </head>
 <body><canvas id="celebrationCanvas" aria-hidden="true" hidden></canvas><div class="toasts" id="toasts" aria-live="polite"></div>
 <header class="topbar"><div class="tb">
@@ -1742,11 +1748,12 @@ function checkMulti() {
   const n = q.rows.filter((r, i) => !r.choices[q.sel[i]].ok).length;
   grade(false, slip, `${n === 1 ? 'One row is' : n + ' rows are'} not right yet (marked in red). Change ${n === 1 ? 'it' : 'them'} and check again.`);
 }
+function qbChoiceWhy(q,c){try{const T=h=>String(h||'').replace(/<span class="lt">[^<]*<\/span>/g,'').replace(/<[^>]+>/g,'').trim(),tx=x=>T(x&&(x.html||x.label||x.text)),ans=q.choices.find(x=>x.ok);return qbWhy({skill:'metabolism.'+q.topic,prompt:String(q.prompt||'')+' '+String(q.eq||''),choices:q.choices.map(tx),answer:tx(ans),explain:T(q.solution)},tx(c))}catch(e){return ''}}
 function choose(i) {
   const q = state.q; if (state.done) return;
   const c = q.choices[i], btn = document.querySelector(`#qBox [data-choice="${i}"]`);
   if (c.ok) { btn.classList.add('right'); grade(true, '', ''); }
-  else { btn.classList.add('wrong'); btn.disabled = true; grade(false, c.slip || 'choice', c.why || ''); }
+  else { btn.classList.add('wrong'); btn.disabled = true; grade(false, c.slip || 'choice', c.why || qbChoiceWhy(q, c)); }
 }
 function ddLog(ok, slip) {
   try {
