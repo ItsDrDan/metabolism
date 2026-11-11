@@ -5,7 +5,7 @@ import json, re, sys, os
 gd = sys.argv[1]
 cfg = json.load(open(os.path.join(gd, 'config.json')))
 content = open(os.path.join(gd, 'content.js')).read()
-s = open('/home/claude/metabolism/index.html').read()
+s = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'index.html')).read()  # the engine next to this tools/ folder
 
 def rep(old, new, count=1):
     global s
