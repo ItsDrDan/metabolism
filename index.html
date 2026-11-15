@@ -1101,6 +1101,8 @@ const DOUBLE = [
   { a: 'Glucose 6-phosphate', b: 'Ribulose 5-phosphate', over: 'NADP^+ → NADPH, − CO2', ans: ['Oxidation', 'Decarboxylation'], why: 'The pentose phosphate pathway oxidizes the sugar (NADP+ is reduced) and removes one carbon as CO2.' },
   { a: 'Glutamate + H2O', b: 'α-Ketoglutarate + NH4^+', over: 'NAD^+ → NADH', ans: ['Oxidation', 'Deamination'], why: 'The carbon is oxidized (NAD+ is reduced) and the amino group leaves as NH4+: oxidative deamination.' }
 ];
+/* reason for each flipped half of a wrong pair (2026-11-14) */
+const DOUBLE_WHY = { Reduction: 'Not reduction: the coenzyme goes from NAD⁺ (or NADP⁺) to NADH (or NADPH), so it takes H from the substrate. The substrate is oxidized.', 'Phosphate transfer': 'Not a phosphate transfer: the new phosphate comes from free Pi, not from another molecule, so this is a phosphorylation.', Carboxylation: 'Not carboxylation: CO₂ leaves (− CO₂ on the arrow), so this is a decarboxylation.', Condensation: 'Not condensation: the thioester bond is broken, not formed, so this is a hydrolysis.', Transamination: 'Not transamination: the amino group leaves as NH₄⁺ instead of moving to an α-keto acid, so this is a deamination.' };
 const DOUBLE_PAIRS = { Oxidation: 'Reduction', Phosphorylation: 'Phosphate transfer', Decarboxylation: 'Carboxylation', Hydrolysis: 'Condensation', Deamination: 'Transamination' };
 const MATCH_END = [['Glycolysis', 'Pyruvate'], ['Gluconeogenesis', 'Glucose'], ['Glycogenesis', 'Glycogen'], ['Glycogenolysis', 'Glucose 6-phosphate'], ['β-Oxidation', 'Acetyl CoA'], ['Ketogenesis', 'Ketone bodies'], ['Lipogenesis', 'Fatty acids'], ['Urea cycle', 'Urea'], ['Pentose phosphate pathway', 'Ribose 5-phosphate + NADPH'], ['Pyruvate in a muscle without enough O2', 'Lactate'], ['Pyruvate in yeast without O2', 'Ethanol + CO2']];
 
@@ -2015,7 +2017,7 @@ GENERATORS.table = genTable; GENERATORS.exam = genExam;
 function genDouble() {
   const d = pick(DOUBLE), [x, y] = d.ans, X = DOUBLE_PAIRS[x], Y = DOUBLE_PAIRS[y];
   const opts = shuffle([[x, y, true], [X, y], [x, Y], [X, Y]]);
-  return { topic: 'rxn', tag: 'Two reactions in one step', kind: 'choice', grid: 1, eq: rxnBox(d, false), prompt: 'This counts as one step, but it is really <b>two</b> reactions. Which two?', choices: opts.map(([a, b, ok]) => ({ html: `${a} and ${b}`, ok: !!ok, slip: (a !== x ? 'redox-flip' : 'double-rxn') })), answer: `${x} and ${y}`, solution: f(d.why), hint: 'Look at each change over the arrow separately: the coenzyme, then any CO₂, phosphate, water or NH₄⁺.' };
+  return { topic: 'rxn', tag: 'Two reactions in one step', kind: 'choice', grid: 1, eq: rxnBox(d, false), prompt: 'This counts as one step, but it is really <b>two</b> reactions. Which two?', choices: opts.map(([a, b, ok]) => ({ html: `${a} and ${b}`, ok: !!ok, slip: (a !== x ? 'redox-flip' : 'double-rxn'), why: ok ? '' : [a !== x ? DOUBLE_WHY[a] : '', b !== y ? DOUBLE_WHY[b] : ''].filter(Boolean).join(' ') })), answer: `${x} and ${y}`, solution: f(d.why), hint: 'Look at each change over the arrow separately: the coenzyme, then any CO₂, phosphate, water or NH₄⁺.' };
 }
 function genMatchEnd() {
   const rows = shuffle(MATCH_END).slice(0, 4);
