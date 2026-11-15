@@ -107,6 +107,12 @@ table.data{margin:6px auto 12px;border-collapse:collapse;font-size:1.02rem;backg
 .feedback.bad{display:block;border:1px solid var(--rose-line);background:var(--rose);color:var(--rose-ink)}
 .feedback.info{display:block;border:1px solid var(--amber-line);background:var(--amber);color:var(--amber-ink)}
 .feedback .sol{margin-top:8px;padding-top:8px;border-top:1px dashed currentColor;color:var(--ink)}
+.feedback .whyall{margin-top:8px;padding-top:4px;border-top:1px dashed currentColor;color:var(--ink)}
+.feedback .whyall summary{font-weight:700;cursor:pointer;min-height:44px;display:flex;align-items:center}
+.feedback .whyall ul{list-style:none;margin:0;padding:0}
+.feedback .whyall li{display:flex;gap:8px;margin:0 0 8px;font-size:.97rem;line-height:1.4}
+.feedback .whyall .wa-x{color:var(--rose-ink);font-weight:700;flex:none}
+.feedback .whyall .lt{font-weight:900;margin-right:6px}
 .xp-pop{display:inline-block;margin-left:6px;padding:1px 9px;border-radius:99px;background:#fff;color:#4a3fb0;font-weight:800;font-size:.9rem}
 .actions{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;margin-top:14px}
 .detail{margin-top:12px;padding:12px 15px;border-radius:var(--r-md);background:#fafaff;border:1px solid var(--line)}
@@ -1820,6 +1826,49 @@ const ENZ_NOT_WITH = { 'pyruvate dehydrogenase': ['pyruvate decarboxylase (yeast
 const STRUCT_ENZ = (() => { const seen = {}; STRUCT_Q.forEach(r => { seen[r.enz] = (seen[r.enz] || 0) + 1; }); return STRUCT_Q.filter(r => r.enz && seen[r.enz] === 1 && !/^\(/.test(r.enz) && !ENZ_REVERSE.includes(r.enz)).map(r => r.enz); })();
 const TWIN = { NADH: 'NADPH', NADPH: 'NADH' };
 const structBag = bag(STRUCT_Q);
+/* per-choice reasons for Structures: enzyme and Structures: coenzyme (2026-11-14): what the wrong choice would do */
+const ENZ_DOES = {
+ "succinate dehydrogenase": "oxidizes succinate to fumarate: a C–C becomes a C=C and FAD takes the 2 H",
+ "fumarase": "adds water across the C=C of fumarate to make malate (a hydration)",
+ "malate dehydrogenase": "oxidizes the 2° alcohol of malate to the ketone of oxaloacetate; NAD⁺ takes the 2 H",
+ "pyruvate dehydrogenase": "turns pyruvate into acetyl CoA: CO₂ leaves, NAD⁺ is reduced and CoA is added (oxidative decarboxylation)",
+ "isocitrate dehydrogenase": "oxidizes isocitrate and removes CO₂ to give α-ketoglutarate; NAD⁺ is reduced",
+ "α-ketoglutarate dehydrogenase": "turns α-ketoglutarate into succinyl CoA: CO₂ leaves, NAD⁺ is reduced and CoA is added",
+ "hexokinase": "puts a phosphate from ATP on C6 of glucose",
+ "phosphofructokinase": "puts a phosphate from ATP on C1 of fructose 6-phosphate, making fructose 1,6-bisphosphate",
+ "glycerol kinase": "puts a phosphate from ATP on glycerol, making glycerol 3-phosphate",
+ "phosphoglycerate kinase": "moves a phosphate from 1,3-bisphosphoglycerate to ADP, making ATP",
+ "pyruvate kinase": "moves the phosphate from phosphoenolpyruvate to ADP, making ATP and pyruvate",
+ "phosphoglucose isomerase": "rearranges glucose 6-phosphate (an aldose) into fructose 6-phosphate (a ketose)",
+ "phosphoglycerate mutase": "moves the phosphate from C3 to C2 of 3-phosphoglycerate",
+ "phosphoglucomutase": "moves a phosphate between C1 and C6 of glucose",
+ "transaminase (PLP)": "swaps the amino group of an amino acid with the C=O of an α-keto acid, using PLP",
+ "glutamate dehydrogenase": "removes the amino group of glutamate as NH₄⁺ (oxidative deamination), giving α-ketoglutarate",
+ "pyruvate decarboxylase (yeast)": "removes CO₂ from pyruvate to make acetaldehyde in yeast fermentation",
+ "glycerol 3-phosphate dehydrogenase": "oxidizes the alcohol of glycerol 3-phosphate to the ketone of dihydroxyacetone phosphate",
+ "acyl CoA dehydrogenase": "starts β-oxidation: it removes 2 H to make a C=C next to the thioester, and FAD takes them",
+ "enoyl CoA hydratase": "adds water across the C=C in β-oxidation, putting an OH on the β carbon",
+ "β-hydroxyacyl CoA dehydrogenase": "oxidizes the β-OH to a β-ketone in β-oxidation; NAD⁺ takes the 2 H",
+ "enolase": "removes water from 2-phosphoglycerate to make phosphoenolpyruvate (a dehydration)",
+ "dehydratase (lipogenesis)": "removes water from the β-OH to make a C=C while building a fatty acid",
+ "pyruvate carboxylase": "adds CO₂ to pyruvate, paid for by ATP, to make oxaloacetate",
+ "acetyl CoA carboxylase": "adds CO₂ to acetyl CoA, paid for by ATP, to make malonyl CoA",
+ "arginase": "uses water to split arginine into urea and ornithine",
+ "argininosuccinate synthetase": "joins citrulline and aspartate into argininosuccinate, paid for by ATP",
+ "aldolase": "splits fructose 1,6-bisphosphate into two 3-carbon pieces",
+ "argininosuccinate lyase": "splits argininosuccinate into arginine and fumarate"
+};
+const COENZ_DOES = {
+ "NAD^+": "NAD⁺ takes 2 H when an alcohol is oxidized to a C=O. It would show up as NAD⁺ → NADH on the arrow.",
+ "NADH": "NADH gives 2 H to reduce a molecule (outside fatty-acid synthesis). It would show up as NADH → NAD⁺.",
+ "FAD": "FAD takes 2 H when a C–C becomes a C=C. It would show up as FAD → FADH₂.",
+ "NADPH": "NADPH gives 2 H when the body builds molecules, such as fatty acids on ACP.",
+ "Coenzyme A": "Coenzyme A ends up on the product as a thioester (S–CoA).",
+ "ATP / ADP": "ATP gives a phosphate (phosphorylation) or pays to join CO₂; ADP takes a phosphate to make ATP.",
+ "PLP (vitamin B6)": "PLP carries an amino group from one molecule to another (transamination).",
+ "None": "This step does use a coenzyme: something on the hidden arrow changes form. Compare the structures to see what."
+};
+const enzWhy = e => ENZ_DOES[e] ? `${fe(e).charAt(0).toUpperCase() + fe(e).slice(1)} ${ENZ_DOES[e]}. That is a different step.` : '';
 function genStruct() {
   const r = structBag.next(), key = r.a + '|' + r.b, why = f(r.why);
   const kinds = ['type', 'class', 'class'];
@@ -1837,11 +1886,11 @@ function genStruct() {
   if (k === 'coenz') {
     const right = pick(r.co), pool = COENZ_OPTS.filter(c => !r.co.includes(c) && c !== TWIN[right]);
     const opts = shuffle([right, ...shuffle(pool).slice(0, 3)]);
-    return Object.assign(base, { tag: 'Structures: coenzyme', prompt: 'The coenzyme labels on the arrow are hidden (?). Which <b>coenzyme</b> does this step use?', choices: opts.map(c => ({ html: f(c), ok: c === right, slip: 'struct-coenzyme' })), answer: f(right),
+    return Object.assign(base, { tag: 'Structures: coenzyme', prompt: 'The coenzyme labels on the arrow are hidden (?). Which <b>coenzyme</b> does this step use?', choices: opts.map(c => ({ html: f(c), ok: c === right, slip: 'struct-coenzyme', why: c === right ? '' : (COENZ_DOES[c] || '') })), answer: f(right),
       solution: `${why}<br><b>Coenzyme:</b> ${r.co.map(f).join(' and ')}.`, hint: 'Count the H atoms. Losing 2 H (alcohol → C=O, or C–C → C=C next to a C=O) needs an oxidized coenzyme: NAD⁺ for an alcohol, FAD for a C=C. Gaining 2 H needs NADH (NADPH when building fatty acids on ACP). A phosphate going on comes from ATP. CoA ends up on the product as S–CoA.', video: 'redox' });
   }
   const others = shuffle(STRUCT_ENZ.filter(e => e !== r.enz && !(ENZ_NOT_WITH[r.enz] || []).includes(e))).slice(0, 3);
-  return Object.assign(base, { tag: 'Structures: enzyme', prompt: 'Which <b>enzyme</b> catalyzes this step?', choices: shuffle([r.enz, ...others]).map(e => ({ html: fe(e), ok: e === r.enz, slip: 'struct-enzyme' })), answer: fe(r.enz),
+  return Object.assign(base, { tag: 'Structures: enzyme', prompt: 'Which <b>enzyme</b> catalyzes this step?', choices: shuffle([r.enz, ...others]).map(e => ({ html: fe(e), ok: e === r.enz, slip: 'struct-enzyme', why: e === r.enz ? '' : enzWhy(e) })), answer: fe(r.enz),
     solution: `${why}<br><b>Enzyme:</b> ${fe(r.enz)}, ${/^[AEIOU]/.test(r.cls) ? 'an' : 'a'} ${r.cls.toLowerCase()}.`, hint: 'Name the substrate, then the change: a dehydrogenase removes H, a kinase adds a phosphate from ATP, an isomerase or mutase rearranges, a hydratase adds water, a carboxylase adds CO₂.', video: 'redox' });
 }
 function genRxn() {
@@ -2152,7 +2201,7 @@ function renderQ(q) {
 }
 function newQuestion(focus) {
   const q = makeQuestion();
-  state.q = q; state.tries = 0; state.helped = false; state.done = false; state.logged = false; state.picked = []; state.boss = false;
+  state.q = q; state.tries = 0; state.wrongPicks = []; state.helped = false; state.done = false; state.logged = false; state.picked = []; state.boss = false;
   showPanel('play');
   const T = TOPICS[q.topic];
   $('playTitle').textContent = state.quiz ? 'Exam Prep Check' : state.sel.size > 1 ? 'Mixed practice' : T.label;
@@ -2225,7 +2274,7 @@ function choose(i) {
   const q = state.q; if (state.done) return;
   const c = q.choices[i], btn = document.querySelector(`#qBox [data-choice="${i}"]`);
   if (c.ok) { btn.classList.add('right'); markRes(btn, true); grade(true, '', ''); }
-  else { btn.classList.add('wrong'); markRes(btn, false); btn.disabled = true; grade(false, c.slip || 'choice', c.why || qbChoiceWhy(q, c)); }
+  else { btn.classList.add('wrong'); markRes(btn, false); btn.disabled = true; (state.wrongPicks = state.wrongPicks || []).push(i); grade(false, c.slip || 'choice', c.why || qbChoiceWhy(q, c)); }
 }
 function ddLog(ok, slip) {
   try {
@@ -2269,7 +2318,17 @@ function finishQuestion() {
   $('nextBtn').innerHTML = (state.quiz && state.quiz.i === state.quiz.plan.length - 1 ? 'See my results ' : 'Next question ') + ico('arrow');
   if (!coarse()) { try { $('nextBtn').focus({ preventScroll: true }); } catch (e) {} }
 }
-function setFeedback(kind, html) { const f = $('feedback'); f.className = 'feedback ' + kind; f.innerHTML = html; }
+/* when a choice question is over: why the right answer is right, and a reason for every other choice (Dr. Dan, 2026-11-14) */
+function whyAll(q) {
+  if (!q || q.kind !== 'choice' || !q.choices) return '';
+  const T = h => String(h || '').replace(/<[^>]+>/g, '').trim(), picked = state.wrongPicks || [];
+  const rows = q.choices.map((c, i) => { if (c.ok) return ''; const w = c.why || qbChoiceWhy(q, c); if (T(w).length < 9) return '';
+    return `<li><span class="wa-x" aria-hidden="true">✗</span><span><b>${c.html}</b>${picked.includes(i) ? ' <small>(your pick)</small>' : ''}<br>${w}</span></li>`; }).filter(Boolean);
+  return rows.length ? `<details class="whyall" open><summary>Why the other choices are wrong</summary><ul>${rows.join('')}</ul></details>` : '';
+}
+function setFeedback(kind, html) { const f = $('feedback'); f.className = 'feedback ' + kind;
+  if (state.done && state.q && state.q.kind === 'choice') html = html.replace('<div class="sol">', '<div class="sol"><b>Why it’s right:</b> ') + whyAll(state.q);
+  f.innerHTML = html; }
 function showSolution() {
   const q = state.q; if (!q || state.done) return;
   if (!state.logged) { ddLog(false, 'gave-up'); P.tried++; bumpTopic(q.topic, false); if (state.quiz) P.streak = 0; if (state.quiz) state.quiz.results.push({ topic: q.topic, tag: q.tag, ok: false }); }
